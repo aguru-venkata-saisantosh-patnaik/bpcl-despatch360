@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPCL DESPATCH360 | Five-Way Reconciliation</title>
+<style>
+:root{--navy:#102b46;--navy2:#173e60;--gold:#f4b323;--bg:#f3f6fa;--card:#fff;--text:#18283a;--muted:#68798b;--line:#e2e8f0;--green:#16845b;--red:#c83e4d;--amber:#b9780c;--blue:#2563a6;--shadow:0 5px 18px rgba(22,42,64,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
+header{background:linear-gradient(110deg,var(--navy),#1c4d72);color:white;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:13px}.logo{height:44px;width:44px;border-radius:10px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900;font-size:20px}.brand h1{font-size:19px;margin:0;letter-spacing:.5px}.brand p{margin:2px 0 0;color:#c8d8e7;font-size:11px;letter-spacing:1px}
+.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.pill{border:1px solid #ffffff44;border-radius:30px;padding:6px 11px;font-size:11px;color:#e9f2fa}
+.layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100vh - 80px)}aside{background:#fff;border-right:1px solid var(--line);padding:18px 12px}.navlabel{font-size:10px;font-weight:800;color:#8a98a8;letter-spacing:1.2px;padding:12px 12px 6px}.nav button{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;padding:11px 12px;border-radius:8px;text-align:left;color:#536477;font-weight:600;cursor:pointer;margin:2px 0}.nav button.active,.nav button:hover{background:#eaf1f8;color:var(--navy)}.nav .ico{width:20px;text-align:center;font-size:16px}
+main{padding:24px;max-width:1600px;width:100%;margin:auto}.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap;margin-bottom:18px}.eyebrow{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:1px}.title{font-size:25px;font-weight:800;margin:3px 0}.sub{color:var(--muted);font-size:13px}.filters{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+input,select,textarea{font:inherit;border:1px solid #d6dee8;border-radius:8px;padding:9px 10px;background:#fff;color:var(--text);min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid #b9d4ef;border-color:#6d9bc7}
+button{font:inherit;cursor:pointer}.btn{border:0;border-radius:8px;padding:9px 13px;background:var(--navy2);color:white;font-weight:700}.btn.secondary{background:#eaf0f6;color:var(--navy)}.btn.gold{background:var(--gold);color:#26384a}.btn.danger{background:#fff0f1;color:var(--red);border:1px solid #f3c9cd}.btn.small{padding:6px 9px;font-size:12px}
+.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}.kpi-label{color:var(--muted);font-size:12px;font-weight:600}.kpi-num{font-size:27px;font-weight:800;margin:5px 0 1px}.kpi-foot{font-size:11px;color:var(--muted)}.kpi-mark{float:right;font-size:20px;color:#7890a8}
+.two{grid-template-columns:1.4fr 1fr}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h3{margin:0;font-size:15px}.section-head small{color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#718095;background:#f7f9fb;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:10px 9px;border-bottom:1px solid var(--line)}td{padding:11px 9px;border-bottom:1px solid #edf1f5;vertical-align:middle}tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums}.status{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800;white-space:nowrap}.ok{background:#e7f6ef;color:var(--green)}.bad{background:#fff0f1;color:var(--red)}.warn{background:#fff5df;color:var(--amber)}.neutral{background:#edf2f7;color:#52677d}
+.bar{height:7px;border-radius:8px;background:#e9eef4;overflow:hidden}.bar>span{display:block;height:100%;background:var(--green);border-radius:8px}.source-list{display:grid;gap:11px}.source{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.source strong{font-size:12px}.source small{display:block;color:var(--muted);font-size:10px}.source-right{text-align:right;font-size:11px;font-weight:700}
+.page{display:none}.page.active{display:block}.notice{padding:11px 13px;border-radius:9px;background:#fff8e9;border:1px solid #f3dfb4;color:#79500c;font-size:12px;margin-bottom:15px}
+.formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:11px;color:#607185;font-weight:700}.field input,.field select{width:100%}.field.wide{grid-column:span 2}.field.full{grid-column:1/-1}
+.panel{border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px}.panel h4{margin:0 0 10px;font-size:13px}.help{font-size:11px;color:var(--muted)}.alert-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #edf1f5}.alert-row:last-child{border:0}.alert-title{font-weight:800;font-size:12px}.alert-meta{color:var(--muted);font-size:11px;margin-top:3px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.tab{border:1px solid var(--line);background:#fff;border-radius:20px;padding:7px 12px;color:#5b6c7e;font-size:11px;font-weight:700}.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+footer{text-align:center;color:#8a98a8;font-size:10px;padding:25px 10px}
+.modal{position:fixed;inset:0;background:#102b4680;display:none;align-items:center;justify-content:center;padding:15px;z-index:10}.modal.show{display:flex}.modalbox{background:#fff;border-radius:14px;padding:20px;width:min(720px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalhead h3{margin:0}.close{border:0;background:#edf2f7;border-radius:7px;padding:5px 9px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:7px 10px}.nav{display:flex;overflow:auto}.navlabel{display:none}.nav button{white-space:nowrap;width:auto}.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}main{padding:16px}}
+@media(max-width:560px){header{padding:14px}.brand h1{font-size:16px}.kpis{gap:9px}.card{padding:12px}.kpi-num{font-size:23px}.formgrid{grid-template-columns:1fr}.field.wide{grid-column:auto}table{min-width:650px}.tablewrap{overflow:auto}.title{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">B</div><div><h1>BPCL | DESPATCH360</h1><p>PAN-INDIA FIVE-WAY DESPATCH RECONCILIATION</p></div></div>
+ <div class="header-right"><span class="pill">● DEMO / SAMPLE DATA</span><span class="pill" id="todayLabel"></span><button class="btn gold" onclick="openEntry()">＋ Enter Daily Data</button></div>
+</header>
+<div class="layout">
+<aside><div class="navlabel">WORKSPACE</div><nav class="nav">
+<button class="active" data-page="dashboard"><span class="ico">▦</span>National Dashboard</button>
+<button data-page="reconcile"><span class="ico">⇄</span>Five-Way Reconciliation</button>
+<button data-page="entry"><span class="ico">✎</span>Manual Data Entry</button>
+<button data-page="alerts"><span class="ico">⚑</span>Discrepancy Register</button>
+<div class="navlabel">ADMINISTRATION</div>
+<button data-page="config"><span class="ico">⚙</span>Background Configuration</button>
+<button data-page="reports"><span class="ico">▤</span>Reports & Audit Trail</button>
+</nav></aside>
+<main>
+<section class="page active" id="page-dashboard">
+ <div class="topline"><div><div class="eyebrow">CORPORATE / REGIONAL / DEPOT VIEW</div><div class="title">National Operations Dashboard</div><div class="sub">One view of daily despatch reconciliation across all participating BPCL locations.</div></div>
+ <div class="filters"><select id="dashRegion" onchange="renderAll()"><option value="All">All Regions</option><option>East</option><option>West</option><option>North</option><option>South</option></select><select id="dashDepot" onchange="renderAll()"><option value="All">All Depots</option></select><input type="date" id="dashDate" onchange="renderAll()"></div></div>
+ <div class="notice"><b>Prototype notice:</b> Figures and depots shown are illustrative. Live SAP/TAS connectivity, BPCL SSO, production hosting and source-system permissions must be approved and configured before operational use.</div>
+ <div class="grid kpis">
+  <div class="card"><span class="kpi-mark">⌂</span><div class="kpi-label">Participating locations</div><div class="kpi-num" id="kLocations">3</div><div class="kpi-foot">Configured in this demo</div></div>
+  <div class="card"><span class="kpi-mark">✓</span><div class="kpi-label">Matched product records</div><div class="kpi-num" id="kMatched">0</div><div class="kpi-foot">All five inputs within tolerance</div></div>
+  <div class="card"><span class="kpi-mark">⚑</span><div class="kpi-label">Open discrepancies</div><div class="kpi-num" id="kOpen" style="color:var(--red)">0</div><div class="kpi-foot">Require depot verification</div></div>
+  <div class="card"><span class="kpi-mark">↗</span><div class="kpi-label">Total SAP despatch</div><div class="kpi-num" id="kVolume">0</div><div class="kpi-foot">KL · selected date and filters</div></div>
+ </div>
+ <div class="grid two">
+  <div class="card"><div class="section-head"><h3>Depot-wise reconciliation status</h3><small>Selected date</small></div><div class="tablewrap"><table><thead><tr><th>Depot</th><th>Region</th><th>Products</th><th>Matched</th><th>Open alerts</th><th>Status</th></tr></thead><tbody id="depotTable"></tbody></table></div></div>
+  <div class="card"><div class="section-head"><h3>Five input channels</h3><small>Source ownership</small></div><div class="source-list">
+   <div class="source"><div><strong>1. Gate Register – TT Out</strong><small>Manual depot entry</small></div><div class="source-right">MANUAL</div></div>
+   <div class="source"><div><strong>2. Gantry BCU Register</strong><small>Manual depot entry</small></div><div class="source-right">MANUAL</div></div>
+   <div class="source"><div><strong>3. TAS Meter Reading</strong><small>Direct TAS vendor integration</small></div><div class="source-right">INTEGRATED</div></div>
+   <div class="source"><div><strong>4. SAP Despatch / Invoicing</strong><small>Daily day-end SAP feed</small></div><div class="source-right">INTEGRATED</div></div>
+   <div class="source"><div><strong>5. Tank Despatch Data</strong><small>Separate SAP data feed</small></div><div class="source-right">INTEGRATED</div></div>
+  </div><div class="panel"><h4>Reconciliation coverage</h4><div class="bar"><span id="coverageBar" style="width:0%"></span></div><div class="help" id="coverageText" style="margin-top:7px">Waiting for data</div></div></div>
+ </div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><h3>Latest discrepancy alerts</h3><button class="btn secondary small" onclick="showPage('alerts')">View all alerts →</button></div><div id="latestAlerts"></div></div>
+</section>
+
+<section class="page" id="page-reconcile">
+ <div class="topline"><div><div class="eyebrow">SOURCE-TO-SOURCE COMPARISON</div><div class="title">Five-Way Reconciliation</div><div class="sub">Every product and depot is checked across all five independent inputs.</div></div><div class="filters"><select id="recDepot" onchange="renderReconcile()"></select><input type="date" id="recDate" onchange="renderReconcile()"></div></div>
+ <div class="notice">The engine compares every source pair, reports the differing source(s), and checks the overall spread against the configured tolerance. It does not assume that the majority value is automatically correct.</div>
+ <div class="card"><div class="section-head"><h3>Product-wise source comparison</h3><span class="help">Quantities in KL</span></div><div class="tablewrap"><table><thead><tr><th>Product</th><th class="num">Gate TT Out</th><th class="num">BCU Register</th><th class="num">TAS Meter</th><th class="num">SAP Despatch</th><th class="num">Tank Data</th><th>Result</th><th>Difference</th></tr></thead><tbody id="reconcileTable"></tbody></table></div></div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><h3>Selected discrepancy explanation</h3><small>Illustrative logic</small></div><div id="recExplain" class="help">Select a record with a discrepancy to see the source comparison.</div></div>
+</section>
+
+<section class="page" id="page-entry">
+ <div class="topline"><div><div class="eyebrow">DEPOT DATA CAPTURE</div><div class="title">Manual Data Entry</div><div class="sub">Enter the two manual inputs. Integrated sources are shown separately and will be populated by approved interfaces.</div></div></div>
+ <div class="notice"><b>Manual inputs:</b> Gate TT Out and Gantry BCU register. The three integrated inputs are not to be manually overwritten in the production design; authorised exception correction must retain the original interface payload and audit history.</div>
+ <div class="card"><div class="section-head"><h3>Daily depot entry</h3><span class="status warn">Manual source entry</span></div>
+ <div class="formgrid">
+  <div class="field"><label>Depot</label><select id="entryDepot"></select></div><div class="field"><label>Reconciliation date</label><input type="date" id="entryDate"></div><div class="field"><label>Product</label><select id="entryProduct"><option>MS</option><option>HSD</option><option>ETHANOL</option><option>BIODIESEL</option><option>SKO</option></select></div>
+  <div class="field"><label>Gate Register – TT Out (KL)</label><input type="number" step="0.001" id="gateVal" placeholder="Enter total quantity"></div>
+  <div class="field"><label>Gantry BCU Register (KL)</label><input type="number" step="0.001" id="bcuVal" placeholder="Enter total quantity"></div>
+  <div class="field"><label>Entered by / Employee ID</label><input id="entryUser" placeholder="Name or employee ID"></div>
+  <div class="field full"><label>Remarks / register reference</label><textarea id="entryRemark" rows="2" placeholder="Register page, shift details, supporting reference..."></textarea></div>
+ </div>
+ <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button class="btn" onclick="saveManual()">Save manual inputs & reconcile</button><button class="btn secondary" onclick="clearEntry()">Clear</button></div><div class="help" id="entryMsg" style="margin-top:10px"></div>
+ </div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><h3>Integrated source status</h3><small>Read-only interface placeholders</small></div><div class="tablewrap"><table><thead><tr><th>Input</th><th>Expected source</th><th>Integration status</th><th>Last received</th><th>Mode</th></tr></thead><tbody>
+ <tr><td>TAS Meter Reading</td><td>TAS vendor interface / approved API</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Automated</td></tr>
+ <tr><td>SAP Despatch / Invoicing</td><td>Daily SAP despatch extract / API</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Day-end feed</td></tr>
+ <tr><td>Tank Despatch Data</td><td>Separate SAP tank-wise data feed</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Day-end feed</td></tr>
+ </tbody></table></div></div>
+</section>
+
+<section class="page" id="page-alerts">
+ <div class="topline"><div><div class="eyebrow">EXCEPTION MANAGEMENT</div><div class="title">Discrepancy Register</div><div class="sub">Every mismatch is assigned, investigated, actioned and independently closed.</div></div><div class="filters"><select id="alertStatus" onchange="renderAlerts()"><option value="All">All statuses</option><option>Open</option><option>Under Investigation</option><option>Resolved – Pending Verification</option><option>Closed</option></select></div></div>
+ <div class="card"><div class="section-head"><h3>Discrepancy and action tracker</h3><span class="help">Use View / Update to record the investigation</span></div><div id="alertList"></div></div>
+</section>
+
+<section class="page" id="page-config">
+ <div class="topline"><div><div class="eyebrow">ADMIN CONTROL PANEL</div><div class="title">Background Configuration</div><div class="sub">Change depot master, products, tolerance and visibility settings without editing the application code.</div></div><span class="status warn">Demo settings stored in this browser</span></div>
+ <div class="card"><div class="section-head"><h3>Reconciliation rules</h3><small>Editable parameters</small></div><div class="formgrid">
+  <div class="field"><label>Default tolerance (KL)</label><input type="number" min="0" step="0.001" id="cfgTolerance"></div>
+  <div class="field"><label>Day-end reconciliation time</label><input type="time" id="cfgCutoff"></div>
+  <div class="field"><label>Missing input alert after (hours)</label><input type="number" min="1" id="cfgMissing"></div>
+  <div class="field"><label>Management visibility</label><select id="cfgVisibility"><option>All authorised management</option><option>Corporate and Regional</option><option>Corporate only</option></select></div>
+  <div class="field"><label>Alert escalation after (hours)</label><input type="number" min="1" id="cfgEscalate"></div>
+  <div class="field"><label>Unit of reconciliation</label><select id="cfgUnit"><option>KL</option><option>Litres</option></select></div>
+ </div><button class="btn" style="margin-top:13px" onclick="saveConfig()">Save background settings</button><span class="help" id="cfgMsg" style="margin-left:10px"></span></div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><h3>Depot master</h3><small>Add / edit participating locations</small></div><div class="formgrid"><div class="field"><label>Depot name</label><input id="newDepot" placeholder="e.g. Haldia Depot"></div><div class="field"><label>Region</label><select id="newRegion"><option>East</option><option>West</option><option>North</option><option>South</option></select></div><div class="field"><label>Location code</label><input id="newCode" placeholder="Depot code"></div></div><button class="btn secondary" style="margin-top:12px" onclick="addDepot()">＋ Add depot</button><div id="depotMaster" style="margin-top:13px"></div></div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><h3>Integration configuration – for IT / Automation team</h3><span class="status neutral">Not live in prototype</span></div>
+ <div class="tablewrap"><table><thead><tr><th>System</th><th>Proposed integration</th><th>Required controls</th><th>Owner</th></tr></thead><tbody>
+ <tr><td>TAS</td><td>Vendor-supported API / read-only database view / scheduled secure export</td><td>Opening & closing totalizer, meter ID, timestamp, product, unit, reset/rollover flag</td><td>TAS vendor + Automation</td></tr>
+ <tr><td>SAP Despatch</td><td>Approved SAP API / OData / IDoc / scheduled extract</td><td>Invoice, material, plant, posting date, quantity, reversal / cancellation status</td><td>SAP team</td></tr>
+ <tr><td>SAP Tank Data</td><td>Separate approved SAP extract / interface</td><td>Tank ID, product, date, quantity, transaction reference, unit</td><td>SAP team + Operations</td></tr>
+ <tr><td>Identity & access</td><td>BPCL-approved SSO / identity provider</td><td>Depot, regional and corporate role-based access; MFA where mandated</td><td>IT / Cybersecurity</td></tr>
+ </tbody></table></div><p class="help">Do not expose TAS, SAP or OT systems directly to a public website. Use BPCL-approved network zones, read-only interfaces, API gateway / DMZ controls, service accounts, encryption, logging and cybersecurity review.</p></div>
+</section>
+
+<section class="page" id="page-reports">
+ <div class="topline"><div><div class="eyebrow">TRANSPARENCY & AUDITABILITY</div><div class="title">Reports & Audit Trail</div><div class="sub">Export the visible reconciliation dataset and retain traceability of data changes.</div></div><div class="filters"><button class="btn" onclick="exportCSV()">Export reconciliation CSV</button><button class="btn secondary" onclick="exportAudit()">Export audit CSV</button></div></div>
+ <div class="card"><div class="section-head"><h3>Audit history</h3><small>Prototype browser session</small></div><div class="tablewrap"><table><thead><tr><th>Timestamp</th><th>Action</th><th>Depot / Product</th><th>User</th><th>Details</th></tr></thead><tbody id="auditTable"></tbody></table></div></div>
+ <div class="notice" style="margin-top:14px">Production requirement: audit events must be stored centrally on the server with controlled retention, tamper-evident logging, user identity, timestamps and before/after values. Browser-local storage is only for this demonstration.</div>
+</section>
+<footer>DESPATCH360 · Concept prototype for BPCL review · Not connected to live BPCL SAP / TAS / BCU systems</footer>
+</main></div>
+
+<div class="modal" id="alertModal"><div class="modalbox"><div class="modalhead"><h3>Discrepancy investigation</h3><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+
+<script>
+const KEY='despatch360_demo_v1';
+const defaultState={
+ config:{tolerance:0.05,cutoff:'23:00',missing:2,visibility:'All authorised management',escalate:24,unit:'KL'},
+ depots:[{name:'Balasore Depot',region:'East',code:'1209'},{name:'Paradeep Depot',region:'East',code:'DEMO-02'},{name:'Budge Budge Depot',region:'East',code:'DEMO-03'}],
+ rows:[
+ {id:1,date:'2026-11-24',depot:'Balasore Depot',product:'HSD',gate:1248,bcu:1248,tas:1246.5,sap:1248,tank:1248,user:'Demo Operator',remark:'Sample mismatch – TAS totalizer',status:'Open',cause:'',action:'',verifier:'',created:'2026-11-24 20:00'},
+ {id:2,date:'2026-11-24',depot:'Balasore Depot',product:'MS',gate:876,bcu:876,tas:876,sap:876,tank:876,user:'Demo Operator',remark:'Sample matched record',status:'Closed',cause:'No discrepancy',action:'Verified sample record',verifier:'Demo Verifier',created:'2026-11-24 20:00'},
+ {id:3,date:'2026-11-24',depot:'Paradeep Depot',product:'MS',gate:920,bcu:918.5,tas:920,sap:920,tank:920,user:'Demo Operator',remark:'Sample BCU mismatch',status:'Under Investigation',cause:'BCU register entry to be checked',action:'Check shift register and BCU report',verifier:'',created:'2026-11-24 20:00'},
+ {id:4,date:'2026-11-24',depot:'Budge Budge Depot',product:'HSD',gate:1100,bcu:1100,tas:1100,sap:1100,tank:1100,user:'Demo Operator',remark:'Sample matched record',status:'Closed',cause:'No discrepancy',action:'Verified sample record',verifier:'Demo Verifier',created:'2026-11-24 20:00'}
+ ],
+ audit:[{time:'2026-11-24 20:00',action:'DEMO DATA LOADED',item:'All sample depots',user:'System',details:'Illustrative values only'}],nextId:5
+};
+let state;
+try{state=JSON.parse(localStorage.getItem(KEY))||structuredClone(defaultState)}catch(e){state=JSON.parse(JSON.stringify(defaultState))}
+const today=new Date().toISOString().slice(0,10);
+document.getElementById('todayLabel').textContent='DATE: '+today;
+document.getElementById('dashDate').value=today;document.getElementById('recDate').value=today;document.getElementById('entryDate').value=today;
+function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
+function audit(action,item,user,details){state.audit.unshift({time:new Date().toLocaleString(),action,item,user:user||'System',details});persist()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmt(v){return Number(v).toLocaleString('en-IN',{minimumFractionDigits:3,maximumFractionDigits:3})}
+function diff(r){let vals=[r.gate,r.bcu,r.tas,r.sap,r.tank].filter(v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v))).map(Number);return vals.length<5?null:Math.max(...vals)-Math.min(...vals)}
+function badSources(r){let vals=[['Gate',r.gate],['BCU',r.bcu],['TAS',r.tas],['SAP',r.sap],['Tank',r.tank]].filter(x=>x[1]!==null&&x[1]!==undefined&&x[1]!==''&&Number.isFinite(Number(x[1])));if(vals.length<5)return ['Missing input'];let counts={};vals.forEach(x=>counts[x[1]]=(counts[x[1]]||0)+1);let common=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];return vals.filter(x=>Math.abs(Number(x[1])-Number(common))>Number(state.config.tolerance)).map(x=>x[0])}
+function statusOf(r){let d=diff(r);if(d===null)return 'Missing Inputs';return d>Number(state.config.tolerance)?'Mismatch':'Matched'}
+function recalc(r){if(statusOf(r)==='Mismatch'&&r.status==='Closed')r.status='Open';if(statusOf(r)==='Matched'&&r.status==='Open')r.status='Closed'}
+function filteredRows(date,depot,region){return state.rows.filter(r=>(!date||r.date===date)&&(!depot||depot==='All'||r.depot===depot)&&(!region||region==='All'||(state.depots.find(d=>d.name===r.depot)||{}).region===region))}
+function populateSelects(){let opts=state.depots.map(d=>`<option>${esc(d.name)}</option>`).join('');['entryDepot','recDepot'].forEach(id=>{let el=document.getElementById(id),old=el.value;el.innerHTML=(id==='recDepot'?'<option value="All">All depots</option>':'')+opts;if([...el.options].some(o=>o.value===old))el.value=old});let dash=document.getElementById('dashDepot'),old=dash.value;dash.innerHTML='<option value="All">All Depots</option>'+opts;if([...dash.options].some(o=>o.value===old))dash.value=old}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));if(p==='dashboard')renderDashboard();if(p==='reconcile')renderReconcile();if(p==='alerts')renderAlerts();if(p==='config')renderConfig();if(p==='reports')renderAudit()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function renderAll(){renderDashboard();renderReconcile();renderAlerts();renderAudit()}
+function renderDashboard(){
+ let rows=filteredRows(document.getElementById('dashDate').value,document.getElementById('dashDepot').value,document.getElementById('dashRegion').value);
+ let matched=rows.filter(r=>statusOf(r)==='Matched').length,open=rows.filter(r=>statusOf(r)!=='Matched'&&r.status!=='Closed').length,volume=rows.reduce((a,r)=>a+(Number(r.sap)||0),0);
+ document.getElementById('kLocations').textContent=new Set(rows.map(r=>r.depot)).size;
+ document.getElementById('kMatched').textContent=matched;document.getElementById('kOpen').textContent=open;document.getElementById('kVolume').textContent=fmt(volume);
+ let by=state.depots.filter(d=>(document.getElementById('dashRegion').value==='All'||d.region===document.getElementById('dashRegion').value)&&(document.getElementById('dashDepot').value==='All'||d.name===document.getElementById('dashDepot').value));
+ document.getElementById('depotTable').innerHTML=by.map(d=>{let rr=rows.filter(r=>r.depot===d.name),m=rr.filter(r=>statusOf(r)==='Matched').length,a=rr.filter(r=>statusOf(r)!=='Matched'&&r.status!=='Closed').length;return `<tr><td><b>${esc(d.name)}</b></td><td>${esc(d.region)}</td><td>${rr.length}</td><td>${m}</td><td>${a?`<span class="status bad">${a} alert(s)</span>`:'<span class="status ok">0</span>'}</td><td>${rr.length&&m===rr.length?'<span class="status ok">Reconciled</span>':rr.length?'<span class="status warn">Attention</span>':'<span class="status neutral">No data</span>'}</td></tr>`}).join('')||'<tr><td colspan="6">No depots for selected filter.</td></tr>';
+ let cov=rows.length?Math.round(rows.filter(r=>[r.gate,r.bcu,r.tas,r.sap,r.tank].every(v=>v!==null&&v!==undefined&&v!=='')).length/rows.length*100):0;document.getElementById('coverageBar').style.width=cov+'%';document.getElementById('coverageText').textContent=cov+'% of product records have all five source values.';
+ let alerts=rows.filter(r=>statusOf(r)!=='Matched').slice(0,4);document.getElementById('latestAlerts').innerHTML=alerts.length?alerts.map(alertHTML).join(''):'<div class="help">No discrepancy alerts for the selected filters.</div>';
+}
+function alertHTML(r){let d=diff(r);return `<div class="alert-row"><div><div class="alert-title">${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</div><div class="alert-meta">${d===null?'One or more inputs missing':`Spread ${fmt(d)} KL · Differing source(s): ${badSources(r).join(', ')}`} · ${esc(r.status)}</div></div><button class="btn secondary small" onclick="openAlert(${r.id})">View / update</button></div>`}
+function renderReconcile(){
+ let date=document.getElementById('recDate').value,depot=document.getElementById('recDepot').value,rows=filteredRows(date,depot);
+ document.getElementById('reconcileTable').innerHTML=rows.map(r=>{let s=statusOf(r),d=diff(r);return `<tr><td><b>${esc(r.product)}</b></td><td class="num">${fmt(r.gate)}</td><td class="num">${fmt(r.bcu)}</td><td class="num">${fmt(r.tas)}</td><td class="num">${fmt(r.sap)}</td><td class="num">${fmt(r.tank)}</td><td><span class="status ${s==='Matched'?'ok':s==='Mismatch'?'bad':'warn'}">${s}</span></td><td>${d===null?'—':fmt(d)+' KL'}</td></tr>`}).join('')||'<tr><td colspan="8">No records found for this date / depot.</td></tr>';
+ let issue=rows.find(r=>statusOf(r)!=='Matched');document.getElementById('recExplain').innerHTML=issue?`<b>${esc(issue.depot)} – ${esc(issue.product)}</b><br>Values: Gate ${fmt(issue.gate)}, BCU ${fmt(issue.bcu)}, TAS ${fmt(issue.tas)}, SAP ${fmt(issue.sap)}, Tank ${fmt(issue.tank)} KL.<br><br><b>Potential outlier source(s):</b> ${badSources(issue).join(', ')}.<br><b>Next step:</b> verify original register / SAP transaction / TAS totalizer and timestamps. The system flags a discrepancy; the depot verifies the actual cause.`:'All displayed records match within the configured tolerance.'}
+}
+function openEntry(){showPage('entry');document.getElementById('entryProduct').focus()}
+function clearEntry(){['gateVal','bcuVal','entryUser','entryRemark'].forEach(id=>document.getElementById(id).value='');document.getElementById('entryMsg').textContent=''}
+function saveManual(){
+ let depot=document.getElementById('entryDepot').value,date=document.getElementById('entryDate').value,product=document.getElementById('entryProduct').value,g=document.getElementById('gateVal').value,b=document.getElementById('bcuVal').value,user=document.getElementById('entryUser').value.trim(),remark=document.getElementById('entryRemark').value;
+ if(!depot||!date||g===''||b===''){document.getElementById('entryMsg').textContent='Please select depot/date and enter both Gate and BCU quantities.';return}
+ if(Number(g)<0||Number(b)<0){document.getElementById('entryMsg').textContent='Quantities cannot be negative.';return}
+ let existing=state.rows.find(r=>r.depot===depot&&r.date===date&&r.product===product);
+ if(existing){existing.gate=Number(g);existing.bcu=Number(b);existing.user=user||'Depot Operator';existing.remark=remark;recalc(existing);audit('MANUAL INPUT UPDATED',depot+' / '+product,user,`Gate=${g}; BCU=${b}`)}
+ else{let r={id:state.nextId++,date,depot,product,gate:Number(g),bcu:Number(b),tas:null,sap:null,tank:null,user:user||'Depot Operator',remark,status:'Missing Inputs',cause:'',action:'',verifier:'',created:new Date().toLocaleString()};state.rows.push(r);audit('MANUAL INPUT CREATED',depot+' / '+product,user,`Gate=${g}; BCU=${b}. Integrated source values pending.`)}
+ persist();document.getElementById('entryMsg').textContent='Manual values saved. Integrated TAS and SAP values are still pending; reconciliation status reflects missing inputs until received.';renderAll();
+}
+function renderAlerts(){let f=document.getElementById('alertStatus').value;let rows=state.rows.filter(r=>f==='All'||r.status===f);document.getElementById('alertList').innerHTML=rows.length?rows.map(r=>`<div class="alert-row"><div><div class="alert-title">${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</div><div class="alert-meta">Spread: ${diff(r)===null?'Missing source':fmt(diff(r))+' KL'} · Outlier: ${badSources(r).join(', ')} · ${esc(r.status)}</div></div><button class="btn secondary small" onclick="openAlert(${r.id})">View / update</button></div>`).join(''):'<div class="help">No alerts in this view.</div>'}
+function openAlert(id){let r=state.rows.find(x=>x.id===id);if(!r)return;document.getElementById('modalBody').innerHTML=`<div class="panel"><b>${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</b><p class="help">Gate ${fmt(r.gate)} | BCU ${fmt(r.bcu)} | TAS ${r.tas==null?'Pending':fmt(r.tas)} | SAP ${r.sap==null?'Pending':fmt(r.sap)} | Tank ${r.tank==null?'Pending':fmt(r.tank)} KL</p><p><span class="status ${statusOf(r)==='Matched'?'ok':'bad'}">${statusOf(r)}</span> <span class="help">Spread: ${diff(r)===null?'Pending':fmt(diff(r))+' KL'} · Candidate outlier(s): ${badSources(r).join(', ')}</span></p></div>
+ <div class="formgrid" style="margin-top:13px"><div class="field"><label>Workflow status</label><select id="mStatus">${['Open','Under Investigation','Resolved – Pending Verification','Closed'].map(s=>`<option ${r.status===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="field"><label>Investigating officer</label><input id="mUser" value="${esc(r.user||'')}"></div><div class="field full"><label>Root cause / observation</label><textarea id="mCause" rows="2">${esc(r.cause||'')}</textarea></div><div class="field full"><label>Corrective action taken / proposed</label><textarea id="mAction" rows="2">${esc(r.action||'')}</textarea></div><div class="field full"><label>Verifier / Depot In-Charge</label><input id="mVerifier" value="${esc(r.verifier||'')}" placeholder="Name / employee ID"></div></div><p class="help">Closure should require root cause, corrective action and verifier. Production should enforce role-based approval and immutable audit history.</p><button class="btn" onclick="saveAlert(${id})">Save investigation update</button>`;document.getElementById('alertModal').classList.add('show')}
+function closeModal(){document.getElementById('alertModal').classList.remove('show')}
+function saveAlert(id){let r=state.rows.find(x=>x.id===id),status=document.getElementById('mStatus').value,cause=document.getElementById('mCause').value,action=document.getElementById('mAction').value,user=document.getElementById('mUser').value,verifier=document.getElementById('mVerifier').value;if(status==='Closed'&&(!cause.trim()||!action.trim()||!verifier.trim())){alert('To close, enter root cause, corrective action and verifier.');return}if(status==='Closed'&&statusOf(r)!=='Matched'){alert('The five source values still show a mismatch. Verify and correct the source record through the authorised source process before closure.');return}r.status=status;r.cause=cause;r.action=action;r.user=user;r.verifier=verifier;audit('DISCREPANCY UPDATED',r.depot+' / '+r.product,user,`Status=${status}; Cause=${cause}; Action=${action}; Verifier=${verifier}`);persist();closeModal();renderAll()}
+function renderConfig(){document.getElementById('cfgTolerance').value=state.config.tolerance;document.getElementById('cfgCutoff').value=state.config.cutoff;document.getElementById('cfgMissing').value=state.config.missing;document.getElementById('cfgVisibility').value=state.config.visibility;document.getElementById('cfgEscalate').value=state.config.escalate;document.getElementById('cfgUnit').value=state.config.unit;document.getElementById('depotMaster').innerHTML='<div class="tablewrap"><table><thead><tr><th>Depot</th><th>Region</th><th>Code</th></tr></thead><tbody>'+state.depots.map(d=>`<tr><td>${esc(d.name)}</td><td>${esc(d.region)}</td><td>${esc(d.code)}</td></tr>`).join('')+'</tbody></table></div>'}
+function saveConfig(){let t=Number(document.getElementById('cfgTolerance').value);if(t<0||!Number.isFinite(t)){alert('Enter a valid non-negative tolerance.');return}state.config={tolerance:t,cutoff:document.getElementById('cfgCutoff').value,missing:Number(document.getElementById('cfgMissing').value),visibility:document.getElementById('cfgVisibility').value,escalate:Number(document.getElementById('cfgEscalate').value),unit:document.getElementById('cfgUnit').value};state.rows.forEach(recalc);audit('CONFIGURATION UPDATED','Global rules','Administrator',JSON.stringify(state.config));persist();document.getElementById('cfgMsg').textContent='Settings saved in this browser.';renderAll()}
+function addDepot(){let name=document.getElementById('newDepot').value.trim(),region=document.getElementById('newRegion').value,code=document.getElementById('newCode').value.trim();if(!name||!code){alert('Enter depot name and location code.');return}if(state.depots.some(d=>d.name.toLowerCase()===name.toLowerCase())){alert('Depot already exists.');return}state.depots.push({name,region,code});audit('DEPOT ADDED',name,'Administrator','Region '+region+'; Code '+code);persist();populateSelects();renderConfig();renderAll();document.getElementById('newDepot').value='';document.getElementById('newCode').value=''}
+function renderAudit(){document.getElementById('auditTable').innerHTML=state.audit.map(a=>`<tr><td>${esc(a.time)}</td><td>${esc(a.action)}</td><td>${esc(a.item)}</td><td>${esc(a.user)}</td><td>${esc(a.details)}</td></tr>`).join('')}
+function download(name,content,type='text/csv'){let blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+function csv(rows){return rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')}
+function exportCSV(){let rows=[['Date','Depot','Product','Gate TT Out KL','Gantry BCU KL','TAS Meter KL','SAP Despatch KL','Tank Data KL','Spread KL','System Result','Workflow Status','Potential Outlier Sources'],...state.rows.map(r=>[r.date,r.depot,r.product,r.gate,r.bcu,r.tas,r.sap,r.tank,diff(r),statusOf(r),r.status,badSources(r).join('; ')])];download('DESPATCH360_Reconciliation.csv',csv(rows))}
+function exportAudit(){download('DESPATCH360_Audit.csv',csv([['Timestamp','Action','Depot / Product','User','Details'],...state.audit.map(a=>[a.time,a.action,a.item,a.user,a.details])]))}
+populateSelects();renderConfig();renderAll();
+</script>
+</body></html>
