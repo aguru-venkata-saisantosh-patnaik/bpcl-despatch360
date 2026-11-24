@@ -39,7 +39,7 @@
       --warn: #9A5B00; --warn-bg: #FFF4DC;
       --err: #C21F2C;  --err-bg: #FDECEC;
 
-      /* Legacy names used by inline styles inside the script — mapped to tokens */
+      /* Legacy names used by inline styles inside the script, mapped to tokens */
       --bpcl-blue: var(--brand-blue-700);
       --bpcl-blue-dark: var(--brand-blue-900);
       --bpcl-blue-light: var(--brand-blue-50);
@@ -148,6 +148,11 @@
       font: inherit; font-size: 0.87em;
       color-scheme: dark;
     }
+
+    /* ===================== ICONS ===================== */
+    .ico { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pill .ico { width: 1em; height: 1em; stroke-width: 2.6; }
+    .notice-line { display: inline-flex; align-items: center; gap: 6px; }
 
     /* ===================== NAV TABS ===================== */
     .nav-bar {
@@ -517,7 +522,7 @@
        RESPONSIVE
        ===================================================================== */
 
-    /* Tablet & small laptop: 640–1199px */
+    /* Tablet & small laptop: 640 to 1199px */
     @media (max-width: 1199px) {
       .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .five-way-grid { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
@@ -634,6 +639,22 @@
 </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></symbol>
+    <symbol id="i-matrix" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4"/><path d="M4 4h13l-2 4 2 4H4"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  </svg>
 
   <!-- Top Header -->
   <header class="topbar">
@@ -641,27 +662,27 @@
       <div class="brand-logo" role="img" aria-label="Bharat Petroleum"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 213.015 266.817"><path d="M0 0h213.015v249.765H0V0m4.791 4.791h202.743v152.742H4.791Z" clip-rule="evenodd" fill="#ffde00" fill-rule="evenodd"/><path fill="#007dc6" d="M0 249.009h212.994v17.808H0z"/><path d="M106.506 149.733c-28.104 0-51.027-22.707-51.027-50.559 0-27.843 22.923-50.553 51.027-50.553 28.107 0 51.027 22.707 51.027 50.553-.003 27.852-22.92 50.559-51.027 50.559m-.684 2.319c-36.405 0-66.096-29.688-66.096-66.096 0-36.399 29.691-66.099 66.096-66.099 36.402 0 66.096 29.7 66.096 66.099 0 36.405-29.694 66.096-66.096 66.096z" clip-rule="evenodd" fill="#007dc6" fill-rule="evenodd"/><path d="M105.381 143.958c-24.456 0-44.406-19.809-44.406-44.106 0-24.294 19.95-44.103 44.406-44.103 24.453 0 44.403 19.809 44.403 44.103-.003 24.297-19.95 44.106-44.403 44.106" clip-rule="evenodd" fill="#007dc6" fill-rule="evenodd"/><path d="M88.791 114.573c9.228-.291 11.931-10.512 12.36-20.937.432-10.434 9.762-19.116 24.195-18.642-23.187-15.537-50.271-1.275-52.134 16.914-1.854 18.189 6.351 22.947 15.579 22.665" clip-rule="evenodd" fill="#ffde00" fill-rule="evenodd"/><path d="M122.238 85.137c-9.075.288-11.733 10.509-12.153 20.937-.426 10.434-9.6 19.11-23.784 18.633 22.791 15.549 49.422 1.287 51.249-16.905 1.827-18.192-6.24-22.956-15.312-22.665" clip-rule="evenodd" fill="#ffde00" fill-rule="evenodd"/><path d="M52.68 183.015h1.296c.987 0 1.749-.189 2.277-.588.531-.393.789-.96.789-1.689 0-.762-.258-1.347-.789-1.743-.528-.393-1.305-.597-2.313-.597h-1.257v4.617m-.003 4.737v4.902h1.608c1.053 0 1.845-.216 2.361-.63.519-.423.774-1.059.774-1.899 0-.798-.255-1.392-.774-1.791-.513-.39-1.308-.582-2.361-.582zm-9.393 10.143v-24.861h9.465c2.745 0 4.89.078 6.438.237 1.548.159 2.775.417 3.669.777 1.14.456 2.019 1.173 2.634 2.124.615.954.927 2.088.927 3.402 0 1.395-.396 2.538-1.188 3.426-.792.885-1.998 1.548-3.627 1.959 1.872.348 3.252.999 4.146 1.944.9.948 1.344 2.241 1.344 3.882 0 2.361-.873 4.137-2.622 5.325-1.749 1.191-4.365 1.785-7.833 1.785zM70.422 197.895v-24.861h8.382v10.233c.549-1.035 1.299-1.815 2.253-2.337.948-.525 2.091-.783 3.435-.783 2.01 0 3.495.564 4.461 1.689.972 1.134 1.461 2.868 1.461 5.217v10.839h-8.475v-10.737c0-.69-.123-1.2-.372-1.527-.252-.315-.651-.477-1.191-.477-.483 0-.873.174-1.152.519-.282.345-.42.819-.42 1.419v10.806h-8.382M94.443 185.574c.192-1.77 1.053-3.105 2.553-4.035 1.506-.927 3.585-1.392 6.249-1.392 1.602 0 3.024.141 4.251.432 1.23.285 2.22.696 2.961 1.233a4.24 4.24 0 0 1 1.557 2.04c.309.834.45 2.106.45 3.792v10.254h-7.527l-.225-1.722a5.548 5.548 0 0 1-2.232 1.611c-.888.354-1.95.534-3.192.534-1.743 0-3.126-.483-4.143-1.461-1.014-.966-1.521-2.292-1.521-3.969 0-2.187.813-3.75 2.451-4.689 1.629-.942 4.395-1.419 8.289-1.419h.243v-1.074c0-.627-.12-1.077-.357-1.344-.24-.273-.633-.399-1.179-.399-.561 0-.972.12-1.248.378-.267.255-.426.663-.462 1.218l-6.918.012m10.164 4.617h-1.104c-.852 0-1.515.18-1.965.531-.453.351-.681.855-.681 1.518 0 .552.168 1.005.501 1.338.327.324.774.495 1.332.495.648 0 1.128-.21 1.446-.624.312-.423.468-1.053.468-1.914v-1.344zM124.875 182.421l.945-.855c.621-.615 1.134-.999 1.545-1.167.399-.165.861-.252 1.398-.252.378 0 .741.048 1.08.132.336.093.654.219.957.393v6.486a16.3 16.3 0 0 0-1.713-.414 7.748 7.748 0 0 0-1.392-.147c-.87 0-1.497.282-1.896.828-.396.552-.594 1.431-.594 2.637v7.83h-8.607v-17.325h8.277v1.854M133.596 185.574c.198-1.77 1.044-3.105 2.547-4.035 1.509-.927 3.588-1.392 6.246-1.392 1.608 0 3.027.141 4.254.432 1.236.285 2.217.696 2.967 1.233a4.32 4.32 0 0 1 1.551 2.04c.306.834.45 2.106.45 3.792v10.254h-7.527l-.225-1.722a5.589 5.589 0 0 1-2.232 1.611c-.888.354-1.947.534-3.192.534-1.743 0-3.126-.483-4.134-1.461-1.026-.966-1.536-2.292-1.536-3.969 0-2.187.819-3.75 2.457-4.689 1.629-.942 4.404-1.419 8.292-1.419h.24v-1.074c0-.627-.12-1.077-.357-1.344-.234-.273-.63-.399-1.176-.399-.558 0-.978.12-1.242.378-.279.255-.432.663-.471 1.218l-6.912.012m10.158 4.617h-1.101c-.861 0-1.518.18-1.968.531-.456.351-.684.855-.684 1.518 0 .552.168 1.005.498 1.338.33.324.774.495 1.335.495.645 0 1.128-.21 1.443-.624.312-.423.471-1.053.471-1.914v-1.344zM154.311 185.64v-5.073h2.286v-3.003l8.283-2.832v5.835h3.972v5.073h-3.972v5.313c0 .57.147.999.462 1.287.306.279.768.417 1.398.417.21 0 .471-.033.783-.084.3-.054.636-.132.993-.219v5.127a35.828 35.828 0 0 1-3.087.63c-.945.135-1.827.21-2.649.21-2.04 0-3.582-.441-4.623-1.323-1.041-.879-1.56-2.19-1.56-3.936v-7.419h-2.286M17.544 220.008v5.175c.096.012.198.027.318.033h.468c1.05 0 1.836-.225 2.367-.684.528-.45.792-1.128.792-2.028 0-.855-.273-1.482-.822-1.893-.546-.405-1.392-.603-2.541-.603h-.582m-9.669 19.299v-24.858h12.498c3.657 0 6.384.672 8.175 2.007 1.791 1.338 2.685 3.36 2.685 6.081 0 2.742-.891 4.812-2.679 6.222-1.785 1.41-4.404 2.118-7.851 2.118h-3.159v8.43zM39.84 228.429h4.47c0-.057.006-.141.015-.252.009-.108.015-.189.015-.231 0-.762-.183-1.326-.561-1.743-.375-.405-.915-.603-1.623-.603-.723 0-1.287.237-1.698.702-.411.468-.621 1.104-.621 1.929v.198m12.066 3.594H39.909v.486c0 1.005.192 1.761.603 2.283.399.531.99.789 1.77.789.663 0 1.167-.165 1.503-.48.351-.324.582-.849.696-1.59h7.14c0 1.992-.807 3.516-2.418 4.596-1.62 1.08-3.921 1.617-6.924 1.617-3.264 0-5.841-.813-7.719-2.442-1.887-1.626-2.829-3.843-2.829-6.639 0-2.799.939-5.004 2.829-6.639 1.878-1.629 4.452-2.448 7.719-2.448 3.105 0 5.499.795 7.188 2.376 1.677 1.575 2.529 3.822 2.529 6.744 0 .252-.03.657-.075 1.227a.295.295 0 0 1-.018.12zM53.769 227.049v-5.073h2.289v-3l8.277-2.835v5.835h3.972v5.073h-3.972v5.31c0 .573.156 1.005.462 1.284.309.285.774.42 1.398.42.21 0 .474-.027.78-.081.309-.054.642-.132 1.002-.216v5.121a31.988 31.988 0 0 1-3.093.627c-.945.147-1.827.213-2.64.213-2.049 0-3.588-.444-4.626-1.323-1.047-.876-1.56-2.187-1.56-3.936v-7.416h-2.289M80.175 223.836l.945-.858c.624-.612 1.137-1.002 1.542-1.173a3.836 3.836 0 0 1 1.398-.252c.384 0 .744.054 1.083.138.336.09.657.219.957.396v6.486a15.598 15.598 0 0 0-1.71-.417 7.489 7.489 0 0 0-1.395-.141c-.87 0-1.5.273-1.893.822-.396.549-.597 1.431-.597 2.631v7.836h-8.61v-17.331h8.28v1.863M98.463 226.122c-.633 0-1.098.348-1.377 1.035-.282.687-.417 1.86-.417 3.483 0 1.695.129 2.868.402 3.519.267.636.729.963 1.392.963.657 0 1.113-.327 1.377-.963.27-.651.399-1.821.399-3.519 0-1.677-.135-2.85-.411-3.519-.273-.666-.726-.999-1.365-.999m.003-4.569c3.273 0 5.856.813 7.737 2.418 1.881 1.617 2.823 3.828 2.823 6.639 0 2.814-.942 5.04-2.814 6.651-1.875 1.623-4.455 2.433-7.746 2.433-3.3 0-5.883-.804-7.749-2.412-1.866-1.605-2.799-3.822-2.799-6.639 0-2.829.933-5.055 2.811-6.672 1.866-1.608 4.446-2.418 7.737-2.418z" clip-rule="evenodd" fill="#007dc6" fill-rule="evenodd"/><path fill="#007dc6" d="M112.404 214.449h8.604v24.858h-8.604z"/><path d="M132.504 228.429h4.473c0-.057 0-.141.012-.252.009-.108.021-.189.021-.231 0-.762-.186-1.326-.564-1.743-.372-.405-.915-.603-1.623-.603-.723 0-1.281.237-1.701.702-.411.468-.618 1.104-.618 1.929v.198m12.069 3.594h-11.997v.486c0 1.005.198 1.761.597 2.283.399.531.999.789 1.776.789.663 0 1.167-.165 1.503-.48.345-.324.576-.849.693-1.59h7.143c0 1.992-.81 3.516-2.418 4.596-1.623 1.08-3.924 1.617-6.924 1.617-3.267 0-5.841-.813-7.719-2.442-1.893-1.626-2.826-3.843-2.826-6.639 0-2.799.936-5.004 2.826-6.639 1.878-1.629 4.452-2.448 7.719-2.448 3.099 0 5.496.795 7.188 2.376 1.683 1.575 2.526 3.822 2.526 6.744 0 .252-.027.657-.066 1.227 0 .057-.012.093-.021.12zM147.621 221.973h8.415v10.704c0 .696.138 1.206.399 1.545.264.324.663.492 1.197.492.495 0 .882-.174 1.161-.519.279-.345.417-.819.417-1.419V221.97h8.4v14.952c0 .069.015.369.057.906.033.525.063 1.023.084 1.473h-8.142v-2.736c-.702 1.038-1.575 1.818-2.61 2.355-1.035.534-2.193.798-3.486.798-2.013 0-3.495-.564-4.449-1.686-.96-1.119-1.437-2.865-1.437-5.223v-10.836M171.882 239.307v-14.952c0-.06-.015-.345-.054-.873a36.302 36.302 0 0 1-.078-1.506h8.139v2.697c.702-1.029 1.569-1.812 2.589-2.331 1.008-.525 2.163-.789 3.465-.789 1.206 0 2.253.249 3.135.747.873.495 1.707 1.293 2.496 2.406.618-1.02 1.428-1.809 2.457-2.337 1.02-.537 2.19-.813 3.498-.813 2.028 0 3.519.567 4.464 1.692.954 1.119 1.431 2.862 1.431 5.22v10.839h-8.445v-10.734c0-.693-.138-1.209-.378-1.53-.252-.318-.654-.477-1.188-.477-.492 0-.87.162-1.143.492-.264.33-.402.813-.402 1.41v10.839h-8.466v-10.734c0-.693-.126-1.209-.372-1.53-.252-.318-.654-.477-1.191-.477-.483 0-.855.168-1.146.519-.285.348-.432.819-.432 1.416v10.809h-8.379" clip-rule="evenodd" fill="#007dc6" fill-rule="evenodd"/></svg></div>
       <div class="brand-title">
         <h1>Pan-India 5-Way EOD Despatch Reconciliation Portal</h1>
-        <p>Transparent Daily Stock &amp; Despatch Verification — Gate • Tank TFMS • SAP • Gantry BCU • TAS Meter</p>
+        <p>Transparent Daily Stock &amp; Despatch Verification · Gate · Tank TFMS · SAP · Gantry BCU · TAS Meter</p>
       </div>
     </div>
     <div class="topbar-controls">
       <span class="proto-badge" title="Concept prototype with sample data. Not an official BPCL system.">Concept prototype · Sample data</span>
       <div class="live-pill"><span class="live-dot"></span> TAS / SAP Sync Active</div>
       <input type="date" id="eodDate" class="date-input" value="2026-11-24" />
-      <button class="btn btn-yellow btn-sm" onclick="exportCSV()">⬇ Export EOD CSV</button>
+      <button class="btn btn-yellow btn-sm" onclick="exportCSV()"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg> Export EOD CSV</button>
     </div>
   </header>
 
   <!-- Navigation Tabs -->
   <nav class="nav-bar">
     <button class="nav-tab active" data-tab="command" onclick="switchTab('command')">
-      🌐 Pan-India Command Center
+      <svg class="ico" aria-hidden="true"><use href="#i-dashboard"/></svg> Pan-India Command Center
     </button>
     <button class="nav-tab" data-tab="matrix" onclick="switchTab('matrix')">
-      🔍 5-Way Depot Matrix &amp; Simulator
+      <svg class="ico" aria-hidden="true"><use href="#i-matrix"/></svg> 5-Way Depot Matrix &amp; Simulator
     </button>
     <button class="nav-tab" data-tab="alerts" onclick="switchTab('alerts')">
-      🚨 Discrepancy Alerts &amp; Rectification Hub
+      <svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg> Discrepancy Alerts &amp; Rectification Hub
       <span id="alertTabBadge" class="badge-count">0</span>
     </button>
   </nav>
@@ -728,10 +749,10 @@
             <span id="matrixStatusBadge"></span>
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <button id="toggleSimBtn" class="btn btn-outline btn-sm" onclick="toggleSimulator()">✏️ Live Edit / Simulate Variance</button>
-            <button class="btn btn-outline btn-sm" onclick="simulatePreset('missingTT')">⚡ Simulate Missing TT (-12,000 L)</button>
-            <button class="btn btn-outline btn-sm" onclick="simulatePreset('tasDrift')">⚡ Simulate TAS Drift (+165 L)</button>
-            <button class="btn btn-outline btn-sm" onclick="simulatePreset('reset')">↺ Reset Exact Match</button>
+            <button id="toggleSimBtn" class="btn btn-outline btn-sm" onclick="toggleSimulator()"><svg class="ico" aria-hidden="true"><use href="#i-edit"/></svg> Live Edit / Simulate Variance</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('missingTT')"><svg class="ico" aria-hidden="true"><use href="#i-activity"/></svg> Simulate Missing TT (-12,000 L)</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('tasDrift')"><svg class="ico" aria-hidden="true"><use href="#i-activity"/></svg> Simulate TAS Drift (+165 L)</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('reset')"><svg class="ico" aria-hidden="true"><use href="#i-reset"/></svg> Reset Exact Match</button>
           </div>
         </div>
 
@@ -813,7 +834,7 @@
     <div class="modal">
       <div class="modal-header">
         <strong id="modalTitle">Rectify Discrepancy Ticket</strong>
-        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">&times;</button>
+        <button onclick="closeModal()" aria-label="Close" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;display:inline-flex;"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
       </div>
       <div class="modal-body">
         <input type="hidden" id="modalTicketId" />
@@ -846,7 +867,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-success" onclick="confirmRectification()">✔ Mark as Rectified &amp; Re-Verify</button>
+        <button class="btn btn-success" onclick="confirmRectification()"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Mark as Rectified &amp; Re-Verify</button>
       </div>
     </div>
   </div>
@@ -855,6 +876,9 @@
   <div id="toast" class="toast"></div>
 
   <script>
+    // Display helper: inline line icon from the sprite at the top of <body>
+    const ico = n => `<svg class="ico" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+
     // ===================== INITIAL DATA =====================
     const TOLERANCE = {
       gate: 0,
@@ -934,7 +958,7 @@
         severity: 'CRITICAL',
         status: 'OPEN',
         rootCause: 'Pending investigation (1 TT missing in Gate Exit log)',
-        sapRef: '—',
+        sapRef: 'Pending',
         notes: '12 KL TT invoiced in SAP & loaded at Bay 2, not logged at Gate Out.',
         created: '20:12 IST'
       },
@@ -948,7 +972,7 @@
         severity: 'HIGH',
         status: 'OPEN',
         rootCause: 'Suspected TFMS Servo Gauge temp compensation offset',
-        sapRef: '—',
+        sapRef: 'Pending',
         notes: 'Exceeds ±50 L tolerance on Tank-04 HSD dip.',
         created: '20:18 IST'
       },
@@ -962,7 +986,7 @@
         severity: 'MEDIUM',
         status: 'OPEN',
         rootCause: 'Bay 4 PD Meter pulse drift suspected',
-        sapRef: '—',
+        sapRef: 'Pending',
         notes: 'TAS EOD totalizer +135 L over SAP invoicing.',
         created: '20:25 IST'
       }
@@ -1106,9 +1130,9 @@
           return `<span class="cp-dot ${r.status}" data-tip="${tip}" tabindex="0" role="img" aria-label="${tip}">${cp.short}</span>`;
         }).join('');
 
-        let statusPill = `<span class="pill pill-green">✔ Reconciled</span>`;
-        if (ev.overall === 'ALERT') statusPill = `<span class="pill pill-red">⚠ Alert (${ev.failedNames.length})</span>`;
-        else if (ev.overall === 'PENDING') statusPill = `<span class="pill pill-amber">⏳ Pending Sign-Off</span>`;
+        let statusPill = `<span class="pill pill-green">${ico('check')} Reconciled</span>`;
+        if (ev.overall === 'ALERT') statusPill = `<span class="pill pill-red">${ico('alert')} Alert (${ev.failedNames.length})</span>`;
+        else if (ev.overall === 'PENDING') statusPill = `<span class="pill pill-amber">${ico('clock')} Pending Sign-Off</span>`;
 
         return `
           <tr>
@@ -1122,7 +1146,7 @@
             <td data-label="5-Way Checks"><div class="dots-row">${dots}</div></td>
             <td data-label="Max Variance" style="font-weight:700;color:${ev.hasError ? 'var(--red)' : 'var(--green)'};">${fmtDiff(ev.maxVar)}</td>
             <td data-label="EOD Status">${statusPill}</td>
-            <td><button class="btn btn-primary btn-sm" onclick="inspectDepot('${d.id}')">Inspect 5-Way →</button></td>
+            <td><button class="btn btn-primary btn-sm" onclick="inspectDepot('${d.id}')">Inspect 5-Way ${ico('arrow')}</button></td>
           </tr>
         `;
       }).join('');
@@ -1132,7 +1156,7 @@
     function renderMatrixView() {
       const sel = document.getElementById('matrixDepotSelect');
       sel.innerHTML = depots.map(d =>
-        `<option value="${d.id}" ${d.id === selectedDepotId ? 'selected' : ''}>${d.name} (${d.code}) — ${d.product}</option>`
+        `<option value="${d.id}" ${d.id === selectedDepotId ? 'selected' : ''}>${d.name} (${d.code}) · ${d.product}</option>`
       ).join('');
 
       const depot = depots.find(d => d.id === selectedDepotId);
@@ -1140,23 +1164,23 @@
 
       // Status badge
       const badgeEl = document.getElementById('matrixStatusBadge');
-      if (ev.overall === 'RECONCILED') badgeEl.innerHTML = `<span class="pill pill-green">✔ 5-Way Reconciled &amp; Locked</span>`;
-      else if (ev.overall === 'ALERT') badgeEl.innerHTML = `<span class="pill pill-red">🚨 Discrepancy Detected</span>`;
-      else badgeEl.innerHTML = `<span class="pill pill-amber">⏳ Ready for EOD Sign-Off</span>`;
+      if (ev.overall === 'RECONCILED') badgeEl.innerHTML = `<span class="pill pill-green">${ico('check')} 5-Way Reconciled &amp; Locked</span>`;
+      else if (ev.overall === 'ALERT') badgeEl.innerHTML = `<span class="pill pill-red">${ico('alert')} Discrepancy Detected</span>`;
+      else badgeEl.innerHTML = `<span class="pill pill-amber">${ico('clock')} Ready for EOD Sign-Off</span>`;
 
       // Toggle button style
       const simBtn = document.getElementById('toggleSimBtn');
       simBtn.className = simulatorMode ? 'btn btn-yellow btn-sm' : 'btn btn-outline btn-sm';
-      simBtn.textContent = simulatorMode ? '✔ Editing Live Readings' : '✏️ Live Edit / Simulate Variance';
+      simBtn.innerHTML = simulatorMode ? `${ico('check')} Editing Live Readings` : `${ico('edit')} Live Edit / Simulate Variance`;
 
       // Raise ticket button
       const raiseWrap = document.getElementById('raiseTicketWrap');
       if (ev.hasError) {
         const existingOpen = alerts.find(a => a.depotId === depot.id && a.status === 'OPEN');
         if (existingOpen) {
-          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="switchTab('alerts')">View Active Ticket (${existingOpen.id}) →</button>`;
+          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="switchTab('alerts')">View Active Ticket (${existingOpen.id}) ${ico('arrow')}</button>`;
         } else {
-          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="raiseAlertTicket()">🚨 Raise Discrepancy Alert Ticket</button>`;
+          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="raiseAlertTicket()">${ico('flag')} Raise Discrepancy Alert Ticket</button>`;
         }
       } else {
         raiseWrap.innerHTML = `<span class="pill pill-green">All 5 Checkpoints Within Tolerance</span>`;
@@ -1223,11 +1247,11 @@
       // Maker-Checker Sign-Off
       const lockNotice = document.getElementById('signoffLockNotice');
       if (ev.hasError) {
-        lockNotice.innerHTML = `<span style="color:var(--red);">🔒 Locked — Resolve discrepancy before EOD sign-off</span>`;
+        lockNotice.innerHTML = `<span class="notice-line" style="color:var(--red);">${ico('lock')} Locked: resolve the discrepancy before EOD sign-off</span>`;
       } else if (depot.maker.signed && depot.checker.signed) {
-        lockNotice.innerHTML = `<span style="color:var(--green);">✔ EOD Sign-Off Completed &amp; Published Pan-India</span>`;
+        lockNotice.innerHTML = `<span class="notice-line" style="color:var(--green);">${ico('check')} EOD Sign-Off Completed &amp; Published Pan-India</span>`;
       } else {
-        lockNotice.innerHTML = `<span style="color:var(--bpcl-blue);">🔓 Unlocked — Ready for Digital Verification</span>`;
+        lockNotice.innerHTML = `<span class="notice-line" style="color:var(--bpcl-blue);">${ico('unlock')} Unlocked: ready for digital verification</span>`;
       }
 
       document.getElementById('signoffGrid').innerHTML = `
@@ -1235,16 +1259,16 @@
           <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:var(--text-muted);">Step 1: Maker (Operations Officer)</div>
           <div style="font-size:15px;font-weight:700;margin:4px 0 10px;">${depot.maker.name}</div>
           ${depot.maker.signed
-            ? `<div class="pill pill-green">✔ Signed &amp; Verified at ${depot.maker.time}</div>`
-            : `<button class="btn btn-primary btn-sm" ${ev.hasError ? 'disabled' : ''} onclick="signOff('maker')">✍ Submit Maker Sign-Off</button>`
+            ? `<div class="pill pill-green">${ico('check')} Signed &amp; Verified at ${depot.maker.time}</div>`
+            : `<button class="btn btn-primary btn-sm" ${ev.hasError ? 'disabled' : ''} onclick="signOff('maker')">${ico('edit')} Submit Maker Sign-Off</button>`
           }
         </div>
         <div class="signoff-box ${depot.checker.signed ? 'done' : ''}">
           <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:var(--text-muted);">Step 2: Checker (Location In-Charge)</div>
           <div style="font-size:15px;font-weight:700;margin:4px 0 10px;">${depot.checker.name}</div>
           ${depot.checker.signed
-            ? `<div class="pill pill-green">✔ Approved &amp; EOD Locked at ${depot.checker.time}</div>`
-            : `<button class="btn btn-success btn-sm" ${ev.hasError || !depot.maker.signed ? 'disabled' : ''} onclick="signOff('checker')">✔ Approve Checker EOD Lock</button>`
+            ? `<div class="pill pill-green">${ico('check')} Approved &amp; EOD Locked at ${depot.checker.time}</div>`
+            : `<button class="btn btn-success btn-sm" ${ev.hasError || !depot.maker.signed ? 'disabled' : ''} onclick="signOff('checker')">${ico('check')} Approve Checker EOD Lock</button>`
           }
         </div>
       `;
@@ -1281,12 +1305,12 @@
         depot.readings.gate = base - 12000;
         depot.maker.signed = false;
         depot.checker.signed = false;
-        showToast('Simulated Missing 12 KL Tank Lorry at Gate Register!');
+        showToast('Simulated: one 12 KL tank lorry missing from the Gate Register.');
       } else if (type === 'tasDrift') {
         depot.readings.tas = base + 165;
         depot.maker.signed = false;
         depot.checker.signed = false;
-        showToast('Simulated +165 L TAS Meter Drift (exceeds ±50 L tolerance)!');
+        showToast('Simulated: TAS meter drift of +165 L, outside the ±50 L tolerance.');
       } else if (type === 'reset') {
         depot.readings.gate = base;
         depot.readings.tank = base;
@@ -1308,7 +1332,7 @@
       } else {
         depot.checker.signed = true;
         depot.checker.time = now;
-        showToast(`EOD Locked & Reconciled for ${depot.name}!`);
+        showToast(`EOD reconciled and locked for ${depot.name}.`);
       }
       renderMatrixView();
       renderCommandCenter();
@@ -1333,13 +1357,13 @@
         severity: sev,
         status: 'OPEN',
         rootCause: 'Auto-flagged by 5-Way Variance Engine',
-        sapRef: '—',
+        sapRef: 'Pending',
         notes: 'Triggered from Depot Matrix for immediate verification.',
         created: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST'
       });
 
       updateAlertBadge(alerts.filter(a => a.status === 'OPEN').length);
-      showToast(`Alert Ticket ${id} raised for ${depot.name}!`);
+      showToast(`Alert ticket ${id} raised for ${depot.name}.`);
       renderMatrixView();
     }
 
@@ -1357,8 +1381,8 @@
       tbody.innerHTML = list.map(a => {
         const sevClass = a.severity === 'CRITICAL' ? 'pill-red' : a.severity === 'HIGH' ? 'pill-amber' : 'pill-blue';
         const stPill = a.status === 'OPEN'
-          ? `<span class="pill pill-red">🚨 OPEN</span>`
-          : `<span class="pill pill-green">✔ RECTIFIED</span>`;
+          ? `<span class="pill pill-red">${ico('alert')} Open</span>`
+          : `<span class="pill pill-green">${ico('check')} Rectified</span>`;
 
         return `
           <tr>
@@ -1387,7 +1411,7 @@
       const t = alerts.find(a => a.id === ticketId);
       if (!t) return;
       document.getElementById('modalTicketId').value = t.id;
-      document.getElementById('modalTitle').textContent = `Rectify Ticket ${t.id} — ${t.depotName}`;
+      document.getElementById('modalTitle').textContent = `Rectify Ticket ${t.id} · ${t.depotName}`;
       document.getElementById('modalSummary').innerHTML =
         `<strong>Mismatch:</strong> ${t.checkpoints} &nbsp;|&nbsp; <strong>Variance:</strong> <span style="color:var(--red);font-weight:700;">${fmtDiff(t.variance)}</span>`;
       document.getElementById('modalSapRef').value = '';
@@ -1424,7 +1448,7 @@
       updateAlertBadge(alerts.filter(a => a.status === 'OPEN').length);
       renderAlertsHub();
       renderCommandCenter();
-      showToast(`Ticket ${t.id} rectified & depot re-verified!`);
+      showToast(`Ticket ${t.id} rectified and depot re-verified.`);
     }
 
     function updateAlertBadge(count) {
@@ -1453,7 +1477,7 @@
       a.download = `BPCL_PanIndia_5Way_EOD_${date}.csv`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('EOD Reconciliation CSV downloaded!');
+      showToast('EOD reconciliation CSV downloaded.');
     }
 
     function showToast(msg) {
