@@ -1,205 +1,1395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BPCL DESPATCH360 | Five-Way Reconciliation</title>
-<style>
-:root{--navy:#102b46;--navy2:#173e60;--gold:#f4b323;--bg:#f3f6fa;--card:#fff;--text:#18283a;--muted:#68798b;--line:#e2e8f0;--green:#16845b;--red:#c83e4d;--amber:#b9780c;--blue:#2563a6;--shadow:0 5px 18px rgba(22,42,64,.07)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
-header{background:linear-gradient(110deg,var(--navy),#1c4d72);color:white;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:13px}.logo{height:44px;width:44px;border-radius:10px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900;font-size:20px}.brand h1{font-size:19px;margin:0;letter-spacing:.5px}.brand p{margin:2px 0 0;color:#c8d8e7;font-size:11px;letter-spacing:1px}
-.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.pill{border:1px solid #ffffff44;border-radius:30px;padding:6px 11px;font-size:11px;color:#e9f2fa}
-.layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100vh - 80px)}aside{background:#fff;border-right:1px solid var(--line);padding:18px 12px}.navlabel{font-size:10px;font-weight:800;color:#8a98a8;letter-spacing:1.2px;padding:12px 12px 6px}.nav button{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;padding:11px 12px;border-radius:8px;text-align:left;color:#536477;font-weight:600;cursor:pointer;margin:2px 0}.nav button.active,.nav button:hover{background:#eaf1f8;color:var(--navy)}.nav .ico{width:20px;text-align:center;font-size:16px}
-main{padding:24px;max-width:1600px;width:100%;margin:auto}.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap;margin-bottom:18px}.eyebrow{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:1px}.title{font-size:25px;font-weight:800;margin:3px 0}.sub{color:var(--muted);font-size:13px}.filters{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-input,select,textarea{font:inherit;border:1px solid #d6dee8;border-radius:8px;padding:9px 10px;background:#fff;color:var(--text);min-width:0}input:focus,select:focus,textarea:focus{outline:2px solid #b9d4ef;border-color:#6d9bc7}
-button{font:inherit;cursor:pointer}.btn{border:0;border-radius:8px;padding:9px 13px;background:var(--navy2);color:white;font-weight:700}.btn.secondary{background:#eaf0f6;color:var(--navy)}.btn.gold{background:var(--gold);color:#26384a}.btn.danger{background:#fff0f1;color:var(--red);border:1px solid #f3c9cd}.btn.small{padding:6px 9px;font-size:12px}
-.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}.kpi-label{color:var(--muted);font-size:12px;font-weight:600}.kpi-num{font-size:27px;font-weight:800;margin:5px 0 1px}.kpi-foot{font-size:11px;color:var(--muted)}.kpi-mark{float:right;font-size:20px;color:#7890a8}
-.two{grid-template-columns:1.4fr 1fr}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h3{margin:0;font-size:15px}.section-head small{color:var(--muted)}
-table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#718095;background:#f7f9fb;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:10px 9px;border-bottom:1px solid var(--line)}td{padding:11px 9px;border-bottom:1px solid #edf1f5;vertical-align:middle}tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums}.status{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800;white-space:nowrap}.ok{background:#e7f6ef;color:var(--green)}.bad{background:#fff0f1;color:var(--red)}.warn{background:#fff5df;color:var(--amber)}.neutral{background:#edf2f7;color:#52677d}
-.bar{height:7px;border-radius:8px;background:#e9eef4;overflow:hidden}.bar>span{display:block;height:100%;background:var(--green);border-radius:8px}.source-list{display:grid;gap:11px}.source{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.source strong{font-size:12px}.source small{display:block;color:var(--muted);font-size:10px}.source-right{text-align:right;font-size:11px;font-weight:700}
-.page{display:none}.page.active{display:block}.notice{padding:11px 13px;border-radius:9px;background:#fff8e9;border:1px solid #f3dfb4;color:#79500c;font-size:12px;margin-bottom:15px}
-.formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:11px;color:#607185;font-weight:700}.field input,.field select{width:100%}.field.wide{grid-column:span 2}.field.full{grid-column:1/-1}
-.panel{border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px}.panel h4{margin:0 0 10px;font-size:13px}.help{font-size:11px;color:var(--muted)}.alert-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #edf1f5}.alert-row:last-child{border:0}.alert-title{font-weight:800;font-size:12px}.alert-meta{color:var(--muted);font-size:11px;margin-top:3px}
-.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.tab{border:1px solid var(--line);background:#fff;border-radius:20px;padding:7px 12px;color:#5b6c7e;font-size:11px;font-weight:700}.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-footer{text-align:center;color:#8a98a8;font-size:10px;padding:25px 10px}
-.modal{position:fixed;inset:0;background:#102b4680;display:none;align-items:center;justify-content:center;padding:15px;z-index:10}.modal.show{display:flex}.modalbox{background:#fff;border-radius:14px;padding:20px;width:min(720px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modalhead h3{margin:0}.close{border:0;background:#edf2f7;border-radius:7px;padding:5px 9px}
-@media(max-width:900px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:7px 10px}.nav{display:flex;overflow:auto}.navlabel{display:none}.nav button{white-space:nowrap;width:auto}.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}main{padding:16px}}
-@media(max-width:560px){header{padding:14px}.brand h1{font-size:16px}.kpis{gap:9px}.card{padding:12px}.kpi-num{font-size:23px}.formgrid{grid-template-columns:1fr}.field.wide{grid-column:auto}table{min-width:650px}.tablewrap{overflow:auto}.title{font-size:21px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BPCL Pan-India 5-Way EOD Despatch Reconciliation Portal</title>
+  <style>
+    :root {
+      --bpcl-blue: #004B8D;
+      --bpcl-blue-dark: #003366;
+      --bpcl-blue-light: #E8F1FA;
+      --bpcl-yellow: #FFD100;
+      --bpcl-yellow-dark: #E0B500;
+      --bg-page: #F3F6FA;
+      --bg-card: #FFFFFF;
+      --border: #DCE3EC;
+      --text-main: #1A2536;
+      --text-muted: #5A6B82;
+      --green: #0E8A4E;
+      --green-bg: #E6F6EE;
+      --amber: #C47A00;
+      --amber-bg: #FFF5E0;
+      --red: #C92A2A;
+      --red-bg: #FDECEC;
+      --radius: 10px;
+      --shadow: 0 2px 10px rgba(0, 40, 85, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .topbar {
+      background: linear-gradient(90deg, var(--bpcl-blue-dark) 0%, var(--bpcl-blue) 100%);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 4px solid var(--bpcl-yellow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo {
+      background: var(--bpcl-yellow);
+      color: var(--bpcl-blue-dark);
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.15);
+    }
+    .brand-title h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .brand-title p {
+      font-size: 12px;
+      color: #C7DDF5;
+    }
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2CE68B;
+      box-shadow: 0 0 8px #2CE68B;
+    }
+    .date-input {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .date-input::-webkit-calendar-picker-indicator { filter: invert(1); }
+
+    /* Nav Tabs */
+    .nav-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    .nav-tab {
+      border: none;
+      background: transparent;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .nav-tab:hover { color: var(--bpcl-blue); background: #F8FAFD; }
+    .nav-tab.active {
+      color: var(--bpcl-blue);
+      border-bottom-color: var(--bpcl-blue);
+    }
+    .badge-count {
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+    .badge-count.zero { background: var(--green); }
+
+    /* Container */
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 22px 24px 48px;
+    }
+    .view-section { display: none; }
+    .view-section.active { display: block; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--bpcl-blue); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: var(--bpcl-blue-dark); }
+    .btn-yellow { background: var(--bpcl-yellow); color: var(--bpcl-blue-dark); }
+    .btn-yellow:hover:not(:disabled) { background: var(--bpcl-yellow-dark); }
+    .btn-outline { background: #fff; color: var(--text-main); border-color: var(--border); }
+    .btn-outline:hover:not(:disabled) { background: #F5F8FC; border-color: #B8C7D9; }
+    .btn-danger { background: var(--red); color: #fff; }
+    .btn-danger:hover:not(:disabled) { background: #A81E1E; }
+    .btn-success { background: var(--green); color: #fff; }
+    .btn-success:hover:not(:disabled) { background: #0A6E3E; }
+    .btn-sm { padding: 6px 10px; font-size: 12px; }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--bpcl-blue);
+    }
+    .kpi-card.green { border-top-color: var(--green); }
+    .kpi-card.red { border-top-color: var(--red); }
+    .kpi-card.amber { border-top-color: var(--amber); }
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #FAFBFD;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--bpcl-blue-dark);
+    }
+    .card-body { padding: 20px; }
+
+    /* Filters */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .input-ctrl, .select-ctrl {
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text-main);
+    }
+    .input-ctrl:focus, .select-ctrl:focus {
+      outline: none;
+      border-color: var(--bpcl-blue);
+      box-shadow: 0 0 0 3px rgba(0, 75, 141, 0.12);
+    }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      padding: 11px 14px;
+      background: #F4F7FB;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #EDF1F7;
+      vertical-align: middle;
+    }
+    tr:hover td { background: #F9FBFE; }
+
+    /* Status Badges */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pill-green { background: var(--green-bg); color: var(--green); }
+    .pill-amber { background: var(--amber-bg); color: var(--amber); }
+    .pill-red { background: var(--red-bg); color: var(--red); }
+    .pill-blue { background: var(--bpcl-blue-light); color: var(--bpcl-blue); }
+
+    /* 5-Way Dots */
+    .dots-row {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .cp-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: #fff;
+      cursor: help;
+      position: relative;
+    }
+    .cp-dot.ok { background: var(--green); }
+    .cp-dot.warn { background: var(--amber); }
+    .cp-dot.err { background: var(--red); }
+    .cp-dot:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1A2536;
+      color: #fff;
+      padding: 6px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+
+    /* 5-Way Checkpoint Grid */
+    .five-way-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .cp-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      position: relative;
+      transition: border-color 0.2s ease;
+    }
+    .cp-card.baseline { border-color: var(--bpcl-blue); background: #F7FBFF; }
+    .cp-card.ok { border-left: 5px solid var(--green); }
+    .cp-card.warn { border-left: 5px solid var(--amber); }
+    .cp-card.err { border-left: 5px solid var(--red); background: #FFF9F9; }
+    .cp-num {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.4px;
+    }
+    .cp-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 4px 0 2px;
+    }
+    .cp-source {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .cp-val-display {
+      font-size: 22px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--bpcl-blue-dark);
+      margin-bottom: 8px;
+    }
+    .cp-input {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 16px;
+      font-weight: 700;
+      border: 1.5px solid var(--bpcl-blue);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .cp-var {
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Comparison Chart */
+    .chart-box {
+      background: #FAFBFD;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 125px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .bar-track {
+      height: 20px;
+      background: #E6ECF4;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.3s ease;
+    }
+    .bar-fill.ok { background: var(--green); }
+    .bar-fill.base { background: var(--bpcl-blue); }
+    .bar-fill.warn { background: var(--amber); }
+    .bar-fill.err { background: var(--red); }
+
+    /* Tolerance Banner */
+    .info-banner {
+      background: var(--bpcl-blue-light);
+      border: 1px solid #C4DCF4;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--bpcl-blue-dark);
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* Maker Checker */
+    .signoff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .signoff-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      background: #FAFBFD;
+    }
+    .signoff-box.done {
+      border-color: #9EDBB9;
+      background: var(--green-bg);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 45, 0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 540px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: var(--bpcl-blue);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-body { padding: 20px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .form-group textarea, .form-group input, .form-group select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 13.5px;
+    }
+    .modal-footer {
+      padding: 14px 20px;
+      background: #F7F9FC;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #1A2536;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 300;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 700px) {
+      .bar-row { grid-template-columns: 1fr; gap: 4px; }
+      .topbar { padding: 12px 16px; }
+      .container { padding: 16px; }
+    }
+  </style>
 </head>
 <body>
-<header>
- <div class="brand"><div class="logo">B</div><div><h1>BPCL | DESPATCH360</h1><p>PAN-INDIA FIVE-WAY DESPATCH RECONCILIATION</p></div></div>
- <div class="header-right"><span class="pill">● DEMO / SAMPLE DATA</span><span class="pill" id="todayLabel"></span><button class="btn gold" onclick="openEntry()">＋ Enter Daily Data</button></div>
-</header>
-<div class="layout">
-<aside><div class="navlabel">WORKSPACE</div><nav class="nav">
-<button class="active" data-page="dashboard"><span class="ico">▦</span>National Dashboard</button>
-<button data-page="reconcile"><span class="ico">⇄</span>Five-Way Reconciliation</button>
-<button data-page="entry"><span class="ico">✎</span>Manual Data Entry</button>
-<button data-page="alerts"><span class="ico">⚑</span>Discrepancy Register</button>
-<div class="navlabel">ADMINISTRATION</div>
-<button data-page="config"><span class="ico">⚙</span>Background Configuration</button>
-<button data-page="reports"><span class="ico">▤</span>Reports & Audit Trail</button>
-</nav></aside>
-<main>
-<section class="page active" id="page-dashboard">
- <div class="topline"><div><div class="eyebrow">CORPORATE / REGIONAL / DEPOT VIEW</div><div class="title">National Operations Dashboard</div><div class="sub">One view of daily despatch reconciliation across all participating BPCL locations.</div></div>
- <div class="filters"><select id="dashRegion" onchange="renderAll()"><option value="All">All Regions</option><option>East</option><option>West</option><option>North</option><option>South</option></select><select id="dashDepot" onchange="renderAll()"><option value="All">All Depots</option></select><input type="date" id="dashDate" onchange="renderAll()"></div></div>
- <div class="notice"><b>Prototype notice:</b> Figures and depots shown are illustrative. Live SAP/TAS connectivity, BPCL SSO, production hosting and source-system permissions must be approved and configured before operational use.</div>
- <div class="grid kpis">
-  <div class="card"><span class="kpi-mark">⌂</span><div class="kpi-label">Participating locations</div><div class="kpi-num" id="kLocations">3</div><div class="kpi-foot">Configured in this demo</div></div>
-  <div class="card"><span class="kpi-mark">✓</span><div class="kpi-label">Matched product records</div><div class="kpi-num" id="kMatched">0</div><div class="kpi-foot">All five inputs within tolerance</div></div>
-  <div class="card"><span class="kpi-mark">⚑</span><div class="kpi-label">Open discrepancies</div><div class="kpi-num" id="kOpen" style="color:var(--red)">0</div><div class="kpi-foot">Require depot verification</div></div>
-  <div class="card"><span class="kpi-mark">↗</span><div class="kpi-label">Total SAP despatch</div><div class="kpi-num" id="kVolume">0</div><div class="kpi-foot">KL · selected date and filters</div></div>
- </div>
- <div class="grid two">
-  <div class="card"><div class="section-head"><h3>Depot-wise reconciliation status</h3><small>Selected date</small></div><div class="tablewrap"><table><thead><tr><th>Depot</th><th>Region</th><th>Products</th><th>Matched</th><th>Open alerts</th><th>Status</th></tr></thead><tbody id="depotTable"></tbody></table></div></div>
-  <div class="card"><div class="section-head"><h3>Five input channels</h3><small>Source ownership</small></div><div class="source-list">
-   <div class="source"><div><strong>1. Gate Register – TT Out</strong><small>Manual depot entry</small></div><div class="source-right">MANUAL</div></div>
-   <div class="source"><div><strong>2. Gantry BCU Register</strong><small>Manual depot entry</small></div><div class="source-right">MANUAL</div></div>
-   <div class="source"><div><strong>3. TAS Meter Reading</strong><small>Direct TAS vendor integration</small></div><div class="source-right">INTEGRATED</div></div>
-   <div class="source"><div><strong>4. SAP Despatch / Invoicing</strong><small>Daily day-end SAP feed</small></div><div class="source-right">INTEGRATED</div></div>
-   <div class="source"><div><strong>5. Tank Despatch Data</strong><small>Separate SAP data feed</small></div><div class="source-right">INTEGRATED</div></div>
-  </div><div class="panel"><h4>Reconciliation coverage</h4><div class="bar"><span id="coverageBar" style="width:0%"></span></div><div class="help" id="coverageText" style="margin-top:7px">Waiting for data</div></div></div>
- </div>
- <div class="card" style="margin-top:14px"><div class="section-head"><h3>Latest discrepancy alerts</h3><button class="btn secondary small" onclick="showPage('alerts')">View all alerts →</button></div><div id="latestAlerts"></div></div>
-</section>
 
-<section class="page" id="page-reconcile">
- <div class="topline"><div><div class="eyebrow">SOURCE-TO-SOURCE COMPARISON</div><div class="title">Five-Way Reconciliation</div><div class="sub">Every product and depot is checked across all five independent inputs.</div></div><div class="filters"><select id="recDepot" onchange="renderReconcile()"></select><input type="date" id="recDate" onchange="renderReconcile()"></div></div>
- <div class="notice">The engine compares every source pair, reports the differing source(s), and checks the overall spread against the configured tolerance. It does not assume that the majority value is automatically correct.</div>
- <div class="card"><div class="section-head"><h3>Product-wise source comparison</h3><span class="help">Quantities in KL</span></div><div class="tablewrap"><table><thead><tr><th>Product</th><th class="num">Gate TT Out</th><th class="num">BCU Register</th><th class="num">TAS Meter</th><th class="num">SAP Despatch</th><th class="num">Tank Data</th><th>Result</th><th>Difference</th></tr></thead><tbody id="reconcileTable"></tbody></table></div></div>
- <div class="card" style="margin-top:14px"><div class="section-head"><h3>Selected discrepancy explanation</h3><small>Illustrative logic</small></div><div id="recExplain" class="help">Select a record with a discrepancy to see the source comparison.</div></div>
-</section>
+  <!-- Top Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">BPCL</div>
+      <div class="brand-title">
+        <h1>Pan-India 5-Way EOD Despatch Reconciliation Portal</h1>
+        <p>Transparent Daily Stock &amp; Despatch Verification — Gate • Tank TFMS • SAP • Gantry BCU • TAS Meter</p>
+      </div>
+    </div>
+    <div class="topbar-controls">
+      <div class="live-pill"><span class="live-dot"></span> TAS / SAP Sync Active</div>
+      <input type="date" id="eodDate" class="date-input" value="2026-11-24" />
+      <button class="btn btn-yellow btn-sm" onclick="exportCSV()">⬇ Export EOD CSV</button>
+    </div>
+  </header>
 
-<section class="page" id="page-entry">
- <div class="topline"><div><div class="eyebrow">DEPOT DATA CAPTURE</div><div class="title">Manual Data Entry</div><div class="sub">Enter the two manual inputs. Integrated sources are shown separately and will be populated by approved interfaces.</div></div></div>
- <div class="notice"><b>Manual inputs:</b> Gate TT Out and Gantry BCU register. The three integrated inputs are not to be manually overwritten in the production design; authorised exception correction must retain the original interface payload and audit history.</div>
- <div class="card"><div class="section-head"><h3>Daily depot entry</h3><span class="status warn">Manual source entry</span></div>
- <div class="formgrid">
-  <div class="field"><label>Depot</label><select id="entryDepot"></select></div><div class="field"><label>Reconciliation date</label><input type="date" id="entryDate"></div><div class="field"><label>Product</label><select id="entryProduct"><option>MS</option><option>HSD</option><option>ETHANOL</option><option>BIODIESEL</option><option>SKO</option></select></div>
-  <div class="field"><label>Gate Register – TT Out (KL)</label><input type="number" step="0.001" id="gateVal" placeholder="Enter total quantity"></div>
-  <div class="field"><label>Gantry BCU Register (KL)</label><input type="number" step="0.001" id="bcuVal" placeholder="Enter total quantity"></div>
-  <div class="field"><label>Entered by / Employee ID</label><input id="entryUser" placeholder="Name or employee ID"></div>
-  <div class="field full"><label>Remarks / register reference</label><textarea id="entryRemark" rows="2" placeholder="Register page, shift details, supporting reference..."></textarea></div>
- </div>
- <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button class="btn" onclick="saveManual()">Save manual inputs & reconcile</button><button class="btn secondary" onclick="clearEntry()">Clear</button></div><div class="help" id="entryMsg" style="margin-top:10px"></div>
- </div>
- <div class="card" style="margin-top:14px"><div class="section-head"><h3>Integrated source status</h3><small>Read-only interface placeholders</small></div><div class="tablewrap"><table><thead><tr><th>Input</th><th>Expected source</th><th>Integration status</th><th>Last received</th><th>Mode</th></tr></thead><tbody>
- <tr><td>TAS Meter Reading</td><td>TAS vendor interface / approved API</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Automated</td></tr>
- <tr><td>SAP Despatch / Invoicing</td><td>Daily SAP despatch extract / API</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Day-end feed</td></tr>
- <tr><td>Tank Despatch Data</td><td>Separate SAP tank-wise data feed</td><td><span class="status warn">Demo – not connected</span></td><td>—</td><td>Day-end feed</td></tr>
- </tbody></table></div></div>
-</section>
+  <!-- Navigation Tabs -->
+  <nav class="nav-bar">
+    <button class="nav-tab active" data-tab="command" onclick="switchTab('command')">
+      🌐 Pan-India Command Center
+    </button>
+    <button class="nav-tab" data-tab="matrix" onclick="switchTab('matrix')">
+      🔍 5-Way Depot Matrix &amp; Simulator
+    </button>
+    <button class="nav-tab" data-tab="alerts" onclick="switchTab('alerts')">
+      🚨 Discrepancy Alerts &amp; Rectification Hub
+      <span id="alertTabBadge" class="badge-count">0</span>
+    </button>
+  </nav>
 
-<section class="page" id="page-alerts">
- <div class="topline"><div><div class="eyebrow">EXCEPTION MANAGEMENT</div><div class="title">Discrepancy Register</div><div class="sub">Every mismatch is assigned, investigated, actioned and independently closed.</div></div><div class="filters"><select id="alertStatus" onchange="renderAlerts()"><option value="All">All statuses</option><option>Open</option><option>Under Investigation</option><option>Resolved – Pending Verification</option><option>Closed</option></select></div></div>
- <div class="card"><div class="section-head"><h3>Discrepancy and action tracker</h3><span class="help">Use View / Update to record the investigation</span></div><div id="alertList"></div></div>
-</section>
+  <main class="container">
 
-<section class="page" id="page-config">
- <div class="topline"><div><div class="eyebrow">ADMIN CONTROL PANEL</div><div class="title">Background Configuration</div><div class="sub">Change depot master, products, tolerance and visibility settings without editing the application code.</div></div><span class="status warn">Demo settings stored in this browser</span></div>
- <div class="card"><div class="section-head"><h3>Reconciliation rules</h3><small>Editable parameters</small></div><div class="formgrid">
-  <div class="field"><label>Default tolerance (KL)</label><input type="number" min="0" step="0.001" id="cfgTolerance"></div>
-  <div class="field"><label>Day-end reconciliation time</label><input type="time" id="cfgCutoff"></div>
-  <div class="field"><label>Missing input alert after (hours)</label><input type="number" min="1" id="cfgMissing"></div>
-  <div class="field"><label>Management visibility</label><select id="cfgVisibility"><option>All authorised management</option><option>Corporate and Regional</option><option>Corporate only</option></select></div>
-  <div class="field"><label>Alert escalation after (hours)</label><input type="number" min="1" id="cfgEscalate"></div>
-  <div class="field"><label>Unit of reconciliation</label><select id="cfgUnit"><option>KL</option><option>Litres</option></select></div>
- </div><button class="btn" style="margin-top:13px" onclick="saveConfig()">Save background settings</button><span class="help" id="cfgMsg" style="margin-left:10px"></span></div>
- <div class="card" style="margin-top:14px"><div class="section-head"><h3>Depot master</h3><small>Add / edit participating locations</small></div><div class="formgrid"><div class="field"><label>Depot name</label><input id="newDepot" placeholder="e.g. Haldia Depot"></div><div class="field"><label>Region</label><select id="newRegion"><option>East</option><option>West</option><option>North</option><option>South</option></select></div><div class="field"><label>Location code</label><input id="newCode" placeholder="Depot code"></div></div><button class="btn secondary" style="margin-top:12px" onclick="addDepot()">＋ Add depot</button><div id="depotMaster" style="margin-top:13px"></div></div>
- <div class="card" style="margin-top:14px"><div class="section-head"><h3>Integration configuration – for IT / Automation team</h3><span class="status neutral">Not live in prototype</span></div>
- <div class="tablewrap"><table><thead><tr><th>System</th><th>Proposed integration</th><th>Required controls</th><th>Owner</th></tr></thead><tbody>
- <tr><td>TAS</td><td>Vendor-supported API / read-only database view / scheduled secure export</td><td>Opening & closing totalizer, meter ID, timestamp, product, unit, reset/rollover flag</td><td>TAS vendor + Automation</td></tr>
- <tr><td>SAP Despatch</td><td>Approved SAP API / OData / IDoc / scheduled extract</td><td>Invoice, material, plant, posting date, quantity, reversal / cancellation status</td><td>SAP team</td></tr>
- <tr><td>SAP Tank Data</td><td>Separate approved SAP extract / interface</td><td>Tank ID, product, date, quantity, transaction reference, unit</td><td>SAP team + Operations</td></tr>
- <tr><td>Identity & access</td><td>BPCL-approved SSO / identity provider</td><td>Depot, regional and corporate role-based access; MFA where mandated</td><td>IT / Cybersecurity</td></tr>
- </tbody></table></div><p class="help">Do not expose TAS, SAP or OT systems directly to a public website. Use BPCL-approved network zones, read-only interfaces, API gateway / DMZ controls, service accounts, encryption, logging and cybersecurity review.</p></div>
-</section>
+    <!-- ===================== TAB 1: PAN-INDIA COMMAND CENTER ===================== -->
+    <section id="view-command" class="view-section active">
+      <div class="kpi-grid" id="kpiGrid"></div>
 
-<section class="page" id="page-reports">
- <div class="topline"><div><div class="eyebrow">TRANSPARENCY & AUDITABILITY</div><div class="title">Reports & Audit Trail</div><div class="sub">Export the visible reconciliation dataset and retain traceability of data changes.</div></div><div class="filters"><button class="btn" onclick="exportCSV()">Export reconciliation CSV</button><button class="btn secondary" onclick="exportAudit()">Export audit CSV</button></div></div>
- <div class="card"><div class="section-head"><h3>Audit history</h3><small>Prototype browser session</small></div><div class="tablewrap"><table><thead><tr><th>Timestamp</th><th>Action</th><th>Depot / Product</th><th>User</th><th>Details</th></tr></thead><tbody id="auditTable"></tbody></table></div></div>
- <div class="notice" style="margin-top:14px">Production requirement: audit events must be stored centrally on the server with controlled retention, tamper-evident logging, user identity, timestamps and before/after values. Browser-local storage is only for this demonstration.</div>
-</section>
-<footer>DESPATCH360 · Concept prototype for BPCL review · Not connected to live BPCL SAP / TAS / BCU systems</footer>
-</main></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Pan-India Depot 5-Way EOD Status</div>
+          <div class="filter-bar">
+            <input type="text" id="searchDepot" class="input-ctrl" placeholder="Search depot or plant code..." oninput="renderCommandCenter()" />
+            <select id="filterRegion" class="select-ctrl" onchange="renderCommandCenter()">
+              <option value="ALL">All Regions</option>
+              <option value="East">East Region</option>
+              <option value="West">West Region</option>
+              <option value="North">North Region</option>
+              <option value="South">South Region</option>
+            </select>
+            <select id="filterProduct" class="select-ctrl" onchange="renderCommandCenter()">
+              <option value="ALL">All Products</option>
+              <option value="MS">MS (Motor Spirit)</option>
+              <option value="HSD">HSD (High Speed Diesel)</option>
+              <option value="Speed 100">Speed 100</option>
+            </select>
+            <select id="filterStatus" class="select-ctrl" onchange="renderCommandCenter()">
+              <option value="ALL">All Statuses</option>
+              <option value="RECONCILED">Reconciled</option>
+              <option value="ALERT">Discrepancy Alert</option>
+              <option value="PENDING">Pending Sign-Off</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Depot &amp; Plant Code</th>
+                <th>Region</th>
+                <th>Product</th>
+                <th>SAP Despatch (L)</th>
+                <th>5-Way Checkpoints (Hover for L)</th>
+                <th>Max Variance</th>
+                <th>EOD Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="depotTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-<div class="modal" id="alertModal"><div class="modalbox"><div class="modalhead"><h3>Discrepancy investigation</h3><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+    <!-- ===================== TAB 2: 5-WAY MATRIX & SIMULATOR ===================== -->
+    <section id="view-matrix" class="view-section">
+      <div class="card">
+        <div class="card-header">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+            <span class="card-title">Inspect Depot:</span>
+            <select id="matrixDepotSelect" class="select-ctrl" style="font-weight:700; min-width:260px;" onchange="selectMatrixDepot(this.value)"></select>
+            <span id="matrixStatusBadge"></span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button id="toggleSimBtn" class="btn btn-outline btn-sm" onclick="toggleSimulator()">✏️ Live Edit / Simulate Variance</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('missingTT')">⚡ Simulate Missing TT (-12,000 L)</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('tasDrift')">⚡ Simulate TAS Drift (+165 L)</button>
+            <button class="btn btn-outline btn-sm" onclick="simulatePreset('reset')">↺ Reset Exact Match</button>
+          </div>
+        </div>
 
-<script>
-const KEY='despatch360_demo_v1';
-const defaultState={
- config:{tolerance:0.05,cutoff:'23:00',missing:2,visibility:'All authorised management',escalate:24,unit:'KL'},
- depots:[{name:'Balasore Depot',region:'East',code:'1209'},{name:'Paradeep Depot',region:'East',code:'DEMO-02'},{name:'Budge Budge Depot',region:'East',code:'DEMO-03'}],
- rows:[
- {id:1,date:'2026-11-24',depot:'Balasore Depot',product:'HSD',gate:1248,bcu:1248,tas:1246.5,sap:1248,tank:1248,user:'Demo Operator',remark:'Sample mismatch – TAS totalizer',status:'Open',cause:'',action:'',verifier:'',created:'2026-11-24 20:00'},
- {id:2,date:'2026-11-24',depot:'Balasore Depot',product:'MS',gate:876,bcu:876,tas:876,sap:876,tank:876,user:'Demo Operator',remark:'Sample matched record',status:'Closed',cause:'No discrepancy',action:'Verified sample record',verifier:'Demo Verifier',created:'2026-11-24 20:00'},
- {id:3,date:'2026-11-24',depot:'Paradeep Depot',product:'MS',gate:920,bcu:918.5,tas:920,sap:920,tank:920,user:'Demo Operator',remark:'Sample BCU mismatch',status:'Under Investigation',cause:'BCU register entry to be checked',action:'Check shift register and BCU report',verifier:'',created:'2026-11-24 20:00'},
- {id:4,date:'2026-11-24',depot:'Budge Budge Depot',product:'HSD',gate:1100,bcu:1100,tas:1100,sap:1100,tank:1100,user:'Demo Operator',remark:'Sample matched record',status:'Closed',cause:'No discrepancy',action:'Verified sample record',verifier:'Demo Verifier',created:'2026-11-24 20:00'}
- ],
- audit:[{time:'2026-11-24 20:00',action:'DEMO DATA LOADED',item:'All sample depots',user:'System',details:'Illustrative values only'}],nextId:5
-};
-let state;
-try{state=JSON.parse(localStorage.getItem(KEY))||structuredClone(defaultState)}catch(e){state=JSON.parse(JSON.stringify(defaultState))}
-const today=new Date().toISOString().slice(0,10);
-document.getElementById('todayLabel').textContent='DATE: '+today;
-document.getElementById('dashDate').value=today;document.getElementById('recDate').value=today;document.getElementById('entryDate').value=today;
-function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
-function audit(action,item,user,details){state.audit.unshift({time:new Date().toLocaleString(),action,item,user:user||'System',details});persist()}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function fmt(v){return Number(v).toLocaleString('en-IN',{minimumFractionDigits:3,maximumFractionDigits:3})}
-function diff(r){let vals=[r.gate,r.bcu,r.tas,r.sap,r.tank].filter(v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v))).map(Number);return vals.length<5?null:Math.max(...vals)-Math.min(...vals)}
-function badSources(r){let vals=[['Gate',r.gate],['BCU',r.bcu],['TAS',r.tas],['SAP',r.sap],['Tank',r.tank]].filter(x=>x[1]!==null&&x[1]!==undefined&&x[1]!==''&&Number.isFinite(Number(x[1])));if(vals.length<5)return ['Missing input'];let counts={};vals.forEach(x=>counts[x[1]]=(counts[x[1]]||0)+1);let common=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];return vals.filter(x=>Math.abs(Number(x[1])-Number(common))>Number(state.config.tolerance)).map(x=>x[0])}
-function statusOf(r){let d=diff(r);if(d===null)return 'Missing Inputs';return d>Number(state.config.tolerance)?'Mismatch':'Matched'}
-function recalc(r){if(statusOf(r)==='Mismatch'&&r.status==='Closed')r.status='Open';if(statusOf(r)==='Matched'&&r.status==='Open')r.status='Closed'}
-function filteredRows(date,depot,region){return state.rows.filter(r=>(!date||r.date===date)&&(!depot||depot==='All'||r.depot===depot)&&(!region||region==='All'||(state.depots.find(d=>d.name===r.depot)||{}).region===region))}
-function populateSelects(){let opts=state.depots.map(d=>`<option>${esc(d.name)}</option>`).join('');['entryDepot','recDepot'].forEach(id=>{let el=document.getElementById(id),old=el.value;el.innerHTML=(id==='recDepot'?'<option value="All">All depots</option>':'')+opts;if([...el.options].some(o=>o.value===old))el.value=old});let dash=document.getElementById('dashDepot'),old=dash.value;dash.innerHTML='<option value="All">All Depots</option>'+opts;if([...dash.options].some(o=>o.value===old))dash.value=old}
-function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));if(p==='dashboard')renderDashboard();if(p==='reconcile')renderReconcile();if(p==='alerts')renderAlerts();if(p==='config')renderConfig();if(p==='reports')renderAudit()}
-document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
-function renderAll(){renderDashboard();renderReconcile();renderAlerts();renderAudit()}
-function renderDashboard(){
- let rows=filteredRows(document.getElementById('dashDate').value,document.getElementById('dashDepot').value,document.getElementById('dashRegion').value);
- let matched=rows.filter(r=>statusOf(r)==='Matched').length,open=rows.filter(r=>statusOf(r)!=='Matched'&&r.status!=='Closed').length,volume=rows.reduce((a,r)=>a+(Number(r.sap)||0),0);
- document.getElementById('kLocations').textContent=new Set(rows.map(r=>r.depot)).size;
- document.getElementById('kMatched').textContent=matched;document.getElementById('kOpen').textContent=open;document.getElementById('kVolume').textContent=fmt(volume);
- let by=state.depots.filter(d=>(document.getElementById('dashRegion').value==='All'||d.region===document.getElementById('dashRegion').value)&&(document.getElementById('dashDepot').value==='All'||d.name===document.getElementById('dashDepot').value));
- document.getElementById('depotTable').innerHTML=by.map(d=>{let rr=rows.filter(r=>r.depot===d.name),m=rr.filter(r=>statusOf(r)==='Matched').length,a=rr.filter(r=>statusOf(r)!=='Matched'&&r.status!=='Closed').length;return `<tr><td><b>${esc(d.name)}</b></td><td>${esc(d.region)}</td><td>${rr.length}</td><td>${m}</td><td>${a?`<span class="status bad">${a} alert(s)</span>`:'<span class="status ok">0</span>'}</td><td>${rr.length&&m===rr.length?'<span class="status ok">Reconciled</span>':rr.length?'<span class="status warn">Attention</span>':'<span class="status neutral">No data</span>'}</td></tr>`}).join('')||'<tr><td colspan="6">No depots for selected filter.</td></tr>';
- let cov=rows.length?Math.round(rows.filter(r=>[r.gate,r.bcu,r.tas,r.sap,r.tank].every(v=>v!==null&&v!==undefined&&v!=='')).length/rows.length*100):0;document.getElementById('coverageBar').style.width=cov+'%';document.getElementById('coverageText').textContent=cov+'% of product records have all five source values.';
- let alerts=rows.filter(r=>statusOf(r)!=='Matched').slice(0,4);document.getElementById('latestAlerts').innerHTML=alerts.length?alerts.map(alertHTML).join(''):'<div class="help">No discrepancy alerts for the selected filters.</div>';
-}
-function alertHTML(r){let d=diff(r);return `<div class="alert-row"><div><div class="alert-title">${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</div><div class="alert-meta">${d===null?'One or more inputs missing':`Spread ${fmt(d)} KL · Differing source(s): ${badSources(r).join(', ')}`} · ${esc(r.status)}</div></div><button class="btn secondary small" onclick="openAlert(${r.id})">View / update</button></div>`}
-function renderReconcile(){
- let date=document.getElementById('recDate').value,depot=document.getElementById('recDepot').value,rows=filteredRows(date,depot);
- document.getElementById('reconcileTable').innerHTML=rows.map(r=>{let s=statusOf(r),d=diff(r);return `<tr><td><b>${esc(r.product)}</b></td><td class="num">${fmt(r.gate)}</td><td class="num">${fmt(r.bcu)}</td><td class="num">${fmt(r.tas)}</td><td class="num">${fmt(r.sap)}</td><td class="num">${fmt(r.tank)}</td><td><span class="status ${s==='Matched'?'ok':s==='Mismatch'?'bad':'warn'}">${s}</span></td><td>${d===null?'—':fmt(d)+' KL'}</td></tr>`}).join('')||'<tr><td colspan="8">No records found for this date / depot.</td></tr>';
- let issue=rows.find(r=>statusOf(r)!=='Matched');document.getElementById('recExplain').innerHTML=issue?`<b>${esc(issue.depot)} – ${esc(issue.product)}</b><br>Values: Gate ${fmt(issue.gate)}, BCU ${fmt(issue.bcu)}, TAS ${fmt(issue.tas)}, SAP ${fmt(issue.sap)}, Tank ${fmt(issue.tank)} KL.<br><br><b>Potential outlier source(s):</b> ${badSources(issue).join(', ')}.<br><b>Next step:</b> verify original register / SAP transaction / TAS totalizer and timestamps. The system flags a discrepancy; the depot verifies the actual cause.`:'All displayed records match within the configured tolerance.'}
-}
-function openEntry(){showPage('entry');document.getElementById('entryProduct').focus()}
-function clearEntry(){['gateVal','bcuVal','entryUser','entryRemark'].forEach(id=>document.getElementById(id).value='');document.getElementById('entryMsg').textContent=''}
-function saveManual(){
- let depot=document.getElementById('entryDepot').value,date=document.getElementById('entryDate').value,product=document.getElementById('entryProduct').value,g=document.getElementById('gateVal').value,b=document.getElementById('bcuVal').value,user=document.getElementById('entryUser').value.trim(),remark=document.getElementById('entryRemark').value;
- if(!depot||!date||g===''||b===''){document.getElementById('entryMsg').textContent='Please select depot/date and enter both Gate and BCU quantities.';return}
- if(Number(g)<0||Number(b)<0){document.getElementById('entryMsg').textContent='Quantities cannot be negative.';return}
- let existing=state.rows.find(r=>r.depot===depot&&r.date===date&&r.product===product);
- if(existing){existing.gate=Number(g);existing.bcu=Number(b);existing.user=user||'Depot Operator';existing.remark=remark;recalc(existing);audit('MANUAL INPUT UPDATED',depot+' / '+product,user,`Gate=${g}; BCU=${b}`)}
- else{let r={id:state.nextId++,date,depot,product,gate:Number(g),bcu:Number(b),tas:null,sap:null,tank:null,user:user||'Depot Operator',remark,status:'Missing Inputs',cause:'',action:'',verifier:'',created:new Date().toLocaleString()};state.rows.push(r);audit('MANUAL INPUT CREATED',depot+' / '+product,user,`Gate=${g}; BCU=${b}. Integrated source values pending.`)}
- persist();document.getElementById('entryMsg').textContent='Manual values saved. Integrated TAS and SAP values are still pending; reconciliation status reflects missing inputs until received.';renderAll();
-}
-function renderAlerts(){let f=document.getElementById('alertStatus').value;let rows=state.rows.filter(r=>f==='All'||r.status===f);document.getElementById('alertList').innerHTML=rows.length?rows.map(r=>`<div class="alert-row"><div><div class="alert-title">${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</div><div class="alert-meta">Spread: ${diff(r)===null?'Missing source':fmt(diff(r))+' KL'} · Outlier: ${badSources(r).join(', ')} · ${esc(r.status)}</div></div><button class="btn secondary small" onclick="openAlert(${r.id})">View / update</button></div>`).join(''):'<div class="help">No alerts in this view.</div>'}
-function openAlert(id){let r=state.rows.find(x=>x.id===id);if(!r)return;document.getElementById('modalBody').innerHTML=`<div class="panel"><b>${esc(r.depot)} · ${esc(r.product)} · ${esc(r.date)}</b><p class="help">Gate ${fmt(r.gate)} | BCU ${fmt(r.bcu)} | TAS ${r.tas==null?'Pending':fmt(r.tas)} | SAP ${r.sap==null?'Pending':fmt(r.sap)} | Tank ${r.tank==null?'Pending':fmt(r.tank)} KL</p><p><span class="status ${statusOf(r)==='Matched'?'ok':'bad'}">${statusOf(r)}</span> <span class="help">Spread: ${diff(r)===null?'Pending':fmt(diff(r))+' KL'} · Candidate outlier(s): ${badSources(r).join(', ')}</span></p></div>
- <div class="formgrid" style="margin-top:13px"><div class="field"><label>Workflow status</label><select id="mStatus">${['Open','Under Investigation','Resolved – Pending Verification','Closed'].map(s=>`<option ${r.status===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="field"><label>Investigating officer</label><input id="mUser" value="${esc(r.user||'')}"></div><div class="field full"><label>Root cause / observation</label><textarea id="mCause" rows="2">${esc(r.cause||'')}</textarea></div><div class="field full"><label>Corrective action taken / proposed</label><textarea id="mAction" rows="2">${esc(r.action||'')}</textarea></div><div class="field full"><label>Verifier / Depot In-Charge</label><input id="mVerifier" value="${esc(r.verifier||'')}" placeholder="Name / employee ID"></div></div><p class="help">Closure should require root cause, corrective action and verifier. Production should enforce role-based approval and immutable audit history.</p><button class="btn" onclick="saveAlert(${id})">Save investigation update</button>`;document.getElementById('alertModal').classList.add('show')}
-function closeModal(){document.getElementById('alertModal').classList.remove('show')}
-function saveAlert(id){let r=state.rows.find(x=>x.id===id),status=document.getElementById('mStatus').value,cause=document.getElementById('mCause').value,action=document.getElementById('mAction').value,user=document.getElementById('mUser').value,verifier=document.getElementById('mVerifier').value;if(status==='Closed'&&(!cause.trim()||!action.trim()||!verifier.trim())){alert('To close, enter root cause, corrective action and verifier.');return}if(status==='Closed'&&statusOf(r)!=='Matched'){alert('The five source values still show a mismatch. Verify and correct the source record through the authorised source process before closure.');return}r.status=status;r.cause=cause;r.action=action;r.user=user;r.verifier=verifier;audit('DISCREPANCY UPDATED',r.depot+' / '+r.product,user,`Status=${status}; Cause=${cause}; Action=${action}; Verifier=${verifier}`);persist();closeModal();renderAll()}
-function renderConfig(){document.getElementById('cfgTolerance').value=state.config.tolerance;document.getElementById('cfgCutoff').value=state.config.cutoff;document.getElementById('cfgMissing').value=state.config.missing;document.getElementById('cfgVisibility').value=state.config.visibility;document.getElementById('cfgEscalate').value=state.config.escalate;document.getElementById('cfgUnit').value=state.config.unit;document.getElementById('depotMaster').innerHTML='<div class="tablewrap"><table><thead><tr><th>Depot</th><th>Region</th><th>Code</th></tr></thead><tbody>'+state.depots.map(d=>`<tr><td>${esc(d.name)}</td><td>${esc(d.region)}</td><td>${esc(d.code)}</td></tr>`).join('')+'</tbody></table></div>'}
-function saveConfig(){let t=Number(document.getElementById('cfgTolerance').value);if(t<0||!Number.isFinite(t)){alert('Enter a valid non-negative tolerance.');return}state.config={tolerance:t,cutoff:document.getElementById('cfgCutoff').value,missing:Number(document.getElementById('cfgMissing').value),visibility:document.getElementById('cfgVisibility').value,escalate:Number(document.getElementById('cfgEscalate').value),unit:document.getElementById('cfgUnit').value};state.rows.forEach(recalc);audit('CONFIGURATION UPDATED','Global rules','Administrator',JSON.stringify(state.config));persist();document.getElementById('cfgMsg').textContent='Settings saved in this browser.';renderAll()}
-function addDepot(){let name=document.getElementById('newDepot').value.trim(),region=document.getElementById('newRegion').value,code=document.getElementById('newCode').value.trim();if(!name||!code){alert('Enter depot name and location code.');return}if(state.depots.some(d=>d.name.toLowerCase()===name.toLowerCase())){alert('Depot already exists.');return}state.depots.push({name,region,code});audit('DEPOT ADDED',name,'Administrator','Region '+region+'; Code '+code);persist();populateSelects();renderConfig();renderAll();document.getElementById('newDepot').value='';document.getElementById('newCode').value=''}
-function renderAudit(){document.getElementById('auditTable').innerHTML=state.audit.map(a=>`<tr><td>${esc(a.time)}</td><td>${esc(a.action)}</td><td>${esc(a.item)}</td><td>${esc(a.user)}</td><td>${esc(a.details)}</td></tr>`).join('')}
-function download(name,content,type='text/csv'){let blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
-function csv(rows){return rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')}
-function exportCSV(){let rows=[['Date','Depot','Product','Gate TT Out KL','Gantry BCU KL','TAS Meter KL','SAP Despatch KL','Tank Data KL','Spread KL','System Result','Workflow Status','Potential Outlier Sources'],...state.rows.map(r=>[r.date,r.depot,r.product,r.gate,r.bcu,r.tas,r.sap,r.tank,diff(r),statusOf(r),r.status,badSources(r).join('; ')])];download('DESPATCH360_Reconciliation.csv',csv(rows))}
-function exportAudit(){download('DESPATCH360_Audit.csv',csv([['Timestamp','Action','Depot / Product','User','Details'],...state.audit.map(a=>[a.time,a.action,a.item,a.user,a.details])]))}
-populateSelects();renderConfig();renderAll();
-</script>
-</body></html>
+        <div class="card-body">
+          <div class="info-banner">
+            <div>
+              <strong>BPCL 5-Way Tolerance Policy:</strong>
+              Exact match (<strong>0 L</strong>) required for <em>Gate Register</em> &amp; <em>Gantry BCU</em> against <em>SAP Invoicing</em>.
+              Thermal/calibration tolerance of <strong>±50 L</strong> allowed for <em>Tank Dip (TFMS)</em> &amp; <em>TAS Meter</em>. Any breach triggers an automatic Pan-India Alert and locks EOD sign-off.
+            </div>
+            <div id="raiseTicketWrap"></div>
+          </div>
+
+          <!-- 5 Checkpoint Cards -->
+          <div class="five-way-grid" id="fiveWayGrid"></div>
+
+          <!-- Zoomed Comparison Bar Chart -->
+          <div class="chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <strong style="font-size:14px; color:var(--bpcl-blue-dark);">5-Way Volume Comparison (Liters)</strong>
+              <span style="font-size:12px; color:var(--text-muted);" id="chartSubtitle"></span>
+            </div>
+            <div id="comparisonChart"></div>
+          </div>
+
+          <!-- Maker-Checker EOD Sign-Off -->
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header">
+              <div class="card-title">EOD Maker-Checker Digital Sign-Off</div>
+              <span id="signoffLockNotice" style="font-size:12.5px; font-weight:600;"></span>
+            </div>
+            <div class="card-body">
+              <div class="signoff-grid" id="signoffGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAB 3: ALERTS & RECTIFICATION HUB ===================== -->
+    <section id="view-alerts" class="view-section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Pan-India Discrepancy Alerts &amp; Rectification Workflow</div>
+          <div class="filter-bar">
+            <select id="alertStatusFilter" class="select-ctrl" onchange="renderAlertsHub()">
+              <option value="ALL">All Tickets</option>
+              <option value="OPEN">Open / Action Required</option>
+              <option value="RECTIFIED">Rectified &amp; Verified</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Depot (Plant Code)</th>
+                <th>Failed Checkpoint(s)</th>
+                <th>Variance (L)</th>
+                <th>Severity</th>
+                <th>Root Cause / SAP Ref</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="alertsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rectification Modal -->
+  <div id="rectifyModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <strong id="modalTitle">Rectify Discrepancy Ticket</strong>
+        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="modalTicketId" />
+        <div id="modalSummary" style="background:#F4F7FB;padding:10px 12px;border-radius:7px;font-size:13px;margin-bottom:14px;"></div>
+
+        <div class="form-group">
+          <label>Root Cause Category</label>
+          <select id="modalRootCause">
+            <option value="Unbilled / Cancelled TT Invoice in SAP">Unbilled / Cancelled TT Invoice in SAP</option>
+            <option value="BCU / TAS Meter Pulse Drift (Calibration Required)">BCU / TAS Meter Pulse Drift (Calibration Required)</option>
+            <option value="TFMS Radar/Servo Gauge Dip or Temp Offset">TFMS Radar/Servo Gauge Dip or Temp Offset</option>
+            <option value="Gate Register Manual Entry / TT Count Typo">Gate Register Manual Entry / TT Count Typo</option>
+            <option value="Gantry Loading Abort / Short-Fill Adjustment">Gantry Loading Abort / Short-Fill Adjustment</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>SAP Reference Doc / Calibration Cert No.</label>
+          <input type="text" id="modalSapRef" placeholder="e.g., SAP-INV-904821 / CAL-BAY4-2026" />
+        </div>
+        <div class="form-group">
+          <label>Rectification Remarks &amp; Verification Notes</label>
+          <textarea id="modalNotes" rows="3" placeholder="Describe how the discrepancy was verified and corrected..."></textarea>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+          <input type="checkbox" id="modalAutoSync" checked style="width:auto;" />
+          <label for="modalAutoSync" style="margin:0;cursor:pointer;color:var(--text-main);">
+            Auto-sync corrected readings to Depot 5-Way Matrix &amp; re-verify tolerances
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-success" onclick="confirmRectification()">✔ Mark as Rectified &amp; Re-Verify</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // ===================== INITIAL DATA =====================
+    const TOLERANCE = {
+      gate: 0,
+      tank: 50,
+      sap: 0,
+      bcu: 0,
+      tas: 50
+    };
+
+    const CHECKPOINTS = [
+      { key: 'gate', num: 'Check 1', short: 'G', name: 'Gate Register', source: 'Security Exit / Physical TT Count' },
+      { key: 'tank', num: 'Check 2', short: 'T', name: 'Tank Despatch Data', source: 'TFMS Radar / Servo Dip Diff' },
+      { key: 'sap',  num: 'Check 3', short: 'S', name: 'SAP Despatch', source: 'EOD Invoicing Baseline (Ref)' },
+      { key: 'bcu',  num: 'Check 4', short: 'B', name: 'Gantry Despatch', source: 'BCU Bay Readings Total' },
+      { key: 'tas',  num: 'Check 5', short: 'M', name: 'TAS Meter Reading', source: 'Yokogawa TAS EOD Totalizer' }
+    ];
+
+    let depots = [
+      {
+        id: 'BLS-1209', name: 'Balasore Depot', code: '1209', region: 'East', product: 'HSD',
+        readings: { gate: 480000, tank: 480025, sap: 480000, bcu: 480000, tas: 479985 },
+        maker: { name: 'B. Paul Rajeev (Asst. Exec OPS)', signed: true, time: '19:45 IST' },
+        checker: { name: 'Lokesh Prasad (Chief Mgr Ops I/C)', signed: true, time: '20:05 IST' }
+      },
+      {
+        id: 'PRD-1204', name: 'Paradeep Coastal Installation', code: '1204', region: 'East', product: 'HSD',
+        readings: { gate: 1240000, tank: 1239815, sap: 1240000, bcu: 1240000, tas: 1240010 },
+        maker: { name: 'S. Mohanty (Exec OPS)', signed: false, time: null },
+        checker: { name: 'R. K. Mishra (Ops I/C)', signed: false, time: null }
+      },
+      {
+        id: 'BGB-1201', name: 'Budge Budge Depot', code: '1201', region: 'East', product: 'MS',
+        readings: { gate: 852000, tank: 864020, sap: 864000, bcu: 864000, tas: 864015 },
+        maker: { name: 'A. Chatterjee (Asst. Exec OPS)', signed: false, time: null },
+        checker: { name: 'D. Sen (Sr. Mgr Ops I/C)', signed: false, time: null }
+      },
+      {
+        id: 'HLD-1205', name: 'Haldia Installation', code: '1205', region: 'East', product: 'HSD',
+        readings: { gate: 920000, tank: 920030, sap: 920000, bcu: 920000, tas: 919970 },
+        maker: { name: 'P. Das (Exec OPS)', signed: true, time: '19:30 IST' },
+        checker: { name: 'S. Roy (Ops I/C)', signed: true, time: '19:50 IST' }
+      },
+      {
+        id: 'BJW-3101', name: 'Bijwasan Terminal', code: '3101', region: 'North', product: 'MS',
+        readings: { gate: 1560000, tank: 1560020, sap: 1560000, bcu: 1560000, tas: 1560135 },
+        maker: { name: 'V. Sharma (Exec OPS)', signed: false, time: null },
+        checker: { name: 'M. Verma (Chief Mgr OPS)', signed: false, time: null }
+      },
+      {
+        id: 'SWR-2101', name: 'Sewree Terminal', code: '2101', region: 'West', product: 'Speed 100',
+        readings: { gate: 312000, tank: 311985, sap: 312000, bcu: 312000, tas: 312010 },
+        maker: { name: 'N. Kulkarni (Asst. Exec OPS)', signed: true, time: '19:15 IST' },
+        checker: { name: 'A. Deshmukh (Ops I/C)', signed: true, time: '19:40 IST' }
+      },
+      {
+        id: 'IRM-4102', name: 'Irimpanam Installation', code: '4102', region: 'South', product: 'MS',
+        readings: { gate: 744000, tank: 744010, sap: 744000, bcu: 744000, tas: 743990 },
+        maker: { name: 'K. Nair (Exec OPS)', signed: true, time: '19:20 IST' },
+        checker: { name: 'R. Menon (Sr. Mgr OPS)', signed: true, time: '19:55 IST' }
+      },
+      {
+        id: 'VZG-4201', name: 'Visakhapatnam Terminal', code: '4201', region: 'South', product: 'HSD',
+        readings: { gate: 636000, tank: 636020, sap: 636000, bcu: 636000, tas: 636015 },
+        maker: { name: 'T. Rao (Asst. Exec OPS)', signed: true, time: '20:10 IST' },
+        checker: { name: 'S. Reddy (Ops I/C)', signed: false, time: null }
+      }
+    ];
+
+    let alerts = [
+      {
+        id: 'ALT-2026-081',
+        depotId: 'BGB-1201',
+        depotName: 'Budge Budge Depot',
+        code: '1201',
+        checkpoints: 'Gate Register vs SAP',
+        variance: -12000,
+        severity: 'CRITICAL',
+        status: 'OPEN',
+        rootCause: 'Pending investigation (1 TT missing in Gate Exit log)',
+        sapRef: '—',
+        notes: '12 KL TT invoiced in SAP & loaded at Bay 2, not logged at Gate Out.',
+        created: '20:12 IST'
+      },
+      {
+        id: 'ALT-2026-082',
+        depotId: 'PRD-1204',
+        depotName: 'Paradeep Coastal Installation',
+        code: '1204',
+        checkpoints: 'Tank Dip (TFMS) vs SAP',
+        variance: -185,
+        severity: 'HIGH',
+        status: 'OPEN',
+        rootCause: 'Suspected TFMS Servo Gauge temp compensation offset',
+        sapRef: '—',
+        notes: 'Exceeds ±50 L tolerance on Tank-04 HSD dip.',
+        created: '20:18 IST'
+      },
+      {
+        id: 'ALT-2026-083',
+        depotId: 'BJW-3101',
+        depotName: 'Bijwasan Terminal',
+        code: '3101',
+        checkpoints: 'TAS Meter vs SAP',
+        variance: 135,
+        severity: 'MEDIUM',
+        status: 'OPEN',
+        rootCause: 'Bay 4 PD Meter pulse drift suspected',
+        sapRef: '—',
+        notes: 'TAS EOD totalizer +135 L over SAP invoicing.',
+        created: '20:25 IST'
+      }
+    ];
+
+    let selectedDepotId = 'BLS-1209';
+    let simulatorMode = false;
+
+    // ===================== CORE RECONCILIATION LOGIC =====================
+    function evalCheckpoint(depot, key) {
+      const base = depot.readings.sap;
+      const val = depot.readings[key];
+      const diff = val - base;
+      const tol = TOLERANCE[key];
+      const absDiff = Math.abs(diff);
+
+      let status = 'ok';
+      if (absDiff > tol) status = 'err';
+      else if (absDiff > 0) status = 'warn';
+
+      return { val, diff, tol, status };
+    }
+
+    function evalDepot(depot) {
+      let hasError = false;
+      let maxVar = 0;
+      const failedNames = [];
+
+      CHECKPOINTS.forEach(cp => {
+        const res = evalCheckpoint(depot, cp.key);
+        if (Math.abs(res.diff) > Math.abs(maxVar)) maxVar = res.diff;
+        if (res.status === 'err') {
+          hasError = true;
+          failedNames.push(cp.name);
+        }
+      });
+
+      let overall = 'RECONCILED';
+      if (hasError) overall = 'ALERT';
+      else if (!depot.maker.signed || !depot.checker.signed) overall = 'PENDING';
+
+      return { hasError, maxVar, failedNames, overall };
+    }
+
+    function fmtNum(n) {
+      return Number(n).toLocaleString('en-IN');
+    }
+
+    function fmtDiff(d) {
+      if (d === 0) return '0 L';
+      return (d > 0 ? '+' : '') + fmtNum(d) + ' L';
+    }
+
+    // ===================== TAB NAVIGATION =====================
+    function switchTab(tab) {
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tab);
+      });
+      document.querySelectorAll('.view-section').forEach(sec => {
+        sec.classList.toggle('active', sec.id === 'view-' + tab);
+      });
+      if (tab === 'command') renderCommandCenter();
+      if (tab === 'matrix') renderMatrixView();
+      if (tab === 'alerts') renderAlertsHub();
+    }
+
+    function inspectDepot(depotId) {
+      selectedDepotId = depotId;
+      simulatorMode = false;
+      switchTab('matrix');
+    }
+
+    // ===================== RENDER TAB 1: COMMAND CENTER =====================
+    function renderCommandCenter() {
+      const search = document.getElementById('searchDepot').value.trim().toLowerCase();
+      const region = document.getElementById('filterRegion').value;
+      const product = document.getElementById('filterProduct').value;
+      const statusFilter = document.getElementById('filterStatus').value;
+
+      // Compute Pan-India KPIs
+      let totalDespatchL = 0;
+      let reconciledCount = 0;
+      let alertDepotCount = 0;
+      let worstVariance = 0;
+
+      depots.forEach(d => {
+        totalDespatchL += d.readings.sap;
+        const ev = evalDepot(d);
+        if (ev.overall === 'RECONCILED') reconciledCount++;
+        if (ev.overall === 'ALERT') alertDepotCount++;
+        if (Math.abs(ev.maxVar) > Math.abs(worstVariance)) worstVariance = ev.maxVar;
+      });
+
+      const openAlerts = alerts.filter(a => a.status === 'OPEN').length;
+      updateAlertBadge(openAlerts);
+
+      document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi-card">
+          <div class="kpi-label">Total Pan-India Despatch (SAP)</div>
+          <div class="kpi-value">${fmtNum(Math.round(totalDespatchL / 1000))} KL</div>
+          <div class="kpi-sub">${fmtNum(totalDespatchL)} Liters across ${depots.length} Depots</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Depots Fully Reconciled</div>
+          <div class="kpi-value">${reconciledCount} / ${depots.length}</div>
+          <div class="kpi-sub">All 5 checkpoints verified &amp; EOD locked</div>
+        </div>
+        <div class="kpi-card ${openAlerts > 0 ? 'red' : 'green'}">
+          <div class="kpi-label">Open Discrepancy Alerts</div>
+          <div class="kpi-value">${openAlerts}</div>
+          <div class="kpi-sub">${alertDepotCount} depot(s) currently breaching tolerance</div>
+        </div>
+        <div class="kpi-card ${Math.abs(worstVariance) > 50 ? 'amber' : 'green'}">
+          <div class="kpi-label">Peak Variance Detected</div>
+          <div class="kpi-value">${fmtDiff(worstVariance)}</div>
+          <div class="kpi-sub">Highest single-checkpoint deviation today</div>
+        </div>
+      `;
+
+      // Filter table
+      const filtered = depots.filter(d => {
+        const ev = evalDepot(d);
+        if (region !== 'ALL' && d.region !== region) return false;
+        if (product !== 'ALL' && d.product !== product) return false;
+        if (statusFilter !== 'ALL' && ev.overall !== statusFilter) return false;
+        if (search && !(`${d.name} ${d.code} ${d.region}`).toLowerCase().includes(search)) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById('depotTableBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:28px;color:var(--text-muted);">No depots match your current filters.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(d => {
+        const ev = evalDepot(d);
+        const dots = CHECKPOINTS.map(cp => {
+          const r = evalCheckpoint(d, cp.key);
+          const tip = `${cp.name}: ${fmtNum(r.val)} L (${fmtDiff(r.diff)})`;
+          return `<span class="cp-dot ${r.status}" data-tip="${tip}">${cp.short}</span>`;
+        }).join('');
+
+        let statusPill = `<span class="pill pill-green">✔ Reconciled</span>`;
+        if (ev.overall === 'ALERT') statusPill = `<span class="pill pill-red">⚠ Alert (${ev.failedNames.length})</span>`;
+        else if (ev.overall === 'PENDING') statusPill = `<span class="pill pill-amber">⏳ Pending Sign-Off</span>`;
+
+        return `
+          <tr>
+            <td>
+              <div style="font-weight:700;color:var(--bpcl-blue-dark);">${d.name}</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">Plant Code: ${d.code}</div>
+            </td>
+            <td>${d.region}</td>
+            <td><span class="pill pill-blue">${d.product}</span></td>
+            <td style="font-weight:700;font-variant-numeric:tabular-nums;">${fmtNum(d.readings.sap)} L</td>
+            <td><div class="dots-row">${dots}</div></td>
+            <td style="font-weight:700;color:${ev.hasError ? 'var(--red)' : 'var(--green)'};">${fmtDiff(ev.maxVar)}</td>
+            <td>${statusPill}</td>
+            <td><button class="btn btn-primary btn-sm" onclick="inspectDepot('${d.id}')">Inspect 5-Way →</button></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // ===================== RENDER TAB 2: 5-WAY MATRIX =====================
+    function renderMatrixView() {
+      const sel = document.getElementById('matrixDepotSelect');
+      sel.innerHTML = depots.map(d =>
+        `<option value="${d.id}" ${d.id === selectedDepotId ? 'selected' : ''}>${d.name} (${d.code}) — ${d.product}</option>`
+      ).join('');
+
+      const depot = depots.find(d => d.id === selectedDepotId);
+      const ev = evalDepot(depot);
+
+      // Status badge
+      const badgeEl = document.getElementById('matrixStatusBadge');
+      if (ev.overall === 'RECONCILED') badgeEl.innerHTML = `<span class="pill pill-green">✔ 5-Way Reconciled &amp; Locked</span>`;
+      else if (ev.overall === 'ALERT') badgeEl.innerHTML = `<span class="pill pill-red">🚨 Discrepancy Detected</span>`;
+      else badgeEl.innerHTML = `<span class="pill pill-amber">⏳ Ready for EOD Sign-Off</span>`;
+
+      // Toggle button style
+      const simBtn = document.getElementById('toggleSimBtn');
+      simBtn.className = simulatorMode ? 'btn btn-yellow btn-sm' : 'btn btn-outline btn-sm';
+      simBtn.textContent = simulatorMode ? '✔ Editing Live Readings' : '✏️ Live Edit / Simulate Variance';
+
+      // Raise ticket button
+      const raiseWrap = document.getElementById('raiseTicketWrap');
+      if (ev.hasError) {
+        const existingOpen = alerts.find(a => a.depotId === depot.id && a.status === 'OPEN');
+        if (existingOpen) {
+          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="switchTab('alerts')">View Active Ticket (${existingOpen.id}) →</button>`;
+        } else {
+          raiseWrap.innerHTML = `<button class="btn btn-danger btn-sm" onclick="raiseAlertTicket()">🚨 Raise Discrepancy Alert Ticket</button>`;
+        }
+      } else {
+        raiseWrap.innerHTML = `<span class="pill pill-green">All 5 Checkpoints Within Tolerance</span>`;
+      }
+
+      // 5 Checkpoint Cards
+      document.getElementById('fiveWayGrid').innerHTML = CHECKPOINTS.map(cp => {
+        const r = evalCheckpoint(depot, cp.key);
+        const isBase = cp.key === 'sap';
+        const statusLabel = isBase
+          ? `<span class="pill pill-blue">BASELINE</span>`
+          : r.status === 'ok'
+            ? `<span class="pill pill-green">EXACT MATCH</span>`
+            : r.status === 'warn'
+              ? `<span class="pill pill-amber">WITHIN ±${r.tol} L</span>`
+              : `<span class="pill pill-red">BREACH (&gt;±${r.tol} L)</span>`;
+
+        const valueHtml = simulatorMode
+          ? `<input type="number" class="cp-input" value="${r.val}" onchange="updateReading('${cp.key}', this.value)" />`
+          : `<div class="cp-val-display">${fmtNum(r.val)} <span style="font-size:13px;font-weight:600;color:var(--text-muted);">L</span></div>`;
+
+        return `
+          <div class="cp-card ${isBase ? 'baseline' : ''} ${r.status}">
+            <div class="cp-num">${cp.num}</div>
+            <div class="cp-name">${cp.name}</div>
+            <div class="cp-source">${cp.source}</div>
+            ${valueHtml}
+            <div class="cp-var">
+              <span style="color:${r.status === 'err' ? 'var(--red)' : r.status === 'warn' ? 'var(--amber)' : 'var(--green)'};">
+                ${isBase ? 'Reference' : fmtDiff(r.diff)}
+              </span>
+              ${statusLabel}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Zoomed Comparison Bar Chart
+      const vals = CHECKPOINTS.map(cp => depot.readings[cp.key]);
+      const minVal = Math.min(...vals);
+      const maxVal = Math.max(...vals);
+      const span = Math.max(maxVal - minVal, 500);
+      const floor = Math.max(0, minVal - span * 0.6);
+      const ceil = maxVal + span * 0.15;
+
+      document.getElementById('chartSubtitle').textContent =
+        `Zoomed scale: ${fmtNum(Math.round(floor))} L to ${fmtNum(Math.round(ceil))} L for variance visibility`;
+
+      document.getElementById('comparisonChart').innerHTML = CHECKPOINTS.map(cp => {
+        const r = evalCheckpoint(depot, cp.key);
+        const pct = Math.max(6, Math.min(100, ((r.val - floor) / (ceil - floor)) * 100));
+        const barClass = cp.key === 'sap' ? 'base' : r.status;
+        return `
+          <div class="bar-row">
+            <div style="font-weight:600;">${cp.num}: ${cp.name}</div>
+            <div class="bar-track">
+              <div class="bar-fill ${barClass}" style="width:${pct.toFixed(1)}%"></div>
+            </div>
+            <div style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">${fmtNum(r.val)} L</div>
+          </div>
+        `;
+      }).join('');
+
+      // Maker-Checker Sign-Off
+      const lockNotice = document.getElementById('signoffLockNotice');
+      if (ev.hasError) {
+        lockNotice.innerHTML = `<span style="color:var(--red);">🔒 Locked — Resolve discrepancy before EOD sign-off</span>`;
+      } else if (depot.maker.signed && depot.checker.signed) {
+        lockNotice.innerHTML = `<span style="color:var(--green);">✔ EOD Sign-Off Completed &amp; Published Pan-India</span>`;
+      } else {
+        lockNotice.innerHTML = `<span style="color:var(--bpcl-blue);">🔓 Unlocked — Ready for Digital Verification</span>`;
+      }
+
+      document.getElementById('signoffGrid').innerHTML = `
+        <div class="signoff-box ${depot.maker.signed ? 'done' : ''}">
+          <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:var(--text-muted);">Step 1: Maker (Operations Officer)</div>
+          <div style="font-size:15px;font-weight:700;margin:4px 0 10px;">${depot.maker.name}</div>
+          ${depot.maker.signed
+            ? `<div class="pill pill-green">✔ Signed &amp; Verified at ${depot.maker.time}</div>`
+            : `<button class="btn btn-primary btn-sm" ${ev.hasError ? 'disabled' : ''} onclick="signOff('maker')">✍ Submit Maker Sign-Off</button>`
+          }
+        </div>
+        <div class="signoff-box ${depot.checker.signed ? 'done' : ''}">
+          <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:var(--text-muted);">Step 2: Checker (Location In-Charge)</div>
+          <div style="font-size:15px;font-weight:700;margin:4px 0 10px;">${depot.checker.name}</div>
+          ${depot.checker.signed
+            ? `<div class="pill pill-green">✔ Approved &amp; EOD Locked at ${depot.checker.time}</div>`
+            : `<button class="btn btn-success btn-sm" ${ev.hasError || !depot.maker.signed ? 'disabled' : ''} onclick="signOff('checker')">✔ Approve Checker EOD Lock</button>`
+          }
+        </div>
+      `;
+    }
+
+    function selectMatrixDepot(id) {
+      selectedDepotId = id;
+      renderMatrixView();
+    }
+
+    function toggleSimulator() {
+      simulatorMode = !simulatorMode;
+      renderMatrixView();
+    }
+
+    function updateReading(key, val) {
+      const depot = depots.find(d => d.id === selectedDepotId);
+      const num = parseInt(val, 10);
+      if (isNaN(num) || num < 0) return;
+      depot.readings[key] = num;
+      // Reset signoff if discrepancy introduced
+      if (evalDepot(depot).hasError) {
+        depot.maker.signed = false;
+        depot.checker.signed = false;
+      }
+      renderMatrixView();
+      renderCommandCenter();
+    }
+
+    function simulatePreset(type) {
+      const depot = depots.find(d => d.id === selectedDepotId);
+      const base = depot.readings.sap;
+      if (type === 'missingTT') {
+        depot.readings.gate = base - 12000;
+        depot.maker.signed = false;
+        depot.checker.signed = false;
+        showToast('Simulated Missing 12 KL Tank Lorry at Gate Register!');
+      } else if (type === 'tasDrift') {
+        depot.readings.tas = base + 165;
+        depot.maker.signed = false;
+        depot.checker.signed = false;
+        showToast('Simulated +165 L TAS Meter Drift (exceeds ±50 L tolerance)!');
+      } else if (type === 'reset') {
+        depot.readings.gate = base;
+        depot.readings.tank = base;
+        depot.readings.bcu = base;
+        depot.readings.tas = base;
+        showToast('All 5 checkpoints reset to exact SAP baseline.');
+      }
+      renderMatrixView();
+      renderCommandCenter();
+    }
+
+    function signOff(role) {
+      const depot = depots.find(d => d.id === selectedDepotId);
+      const now = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST';
+      if (role === 'maker') {
+        depot.maker.signed = true;
+        depot.maker.time = now;
+        showToast(`Maker sign-off recorded for ${depot.name}.`);
+      } else {
+        depot.checker.signed = true;
+        depot.checker.time = now;
+        showToast(`EOD Locked & Reconciled for ${depot.name}!`);
+      }
+      renderMatrixView();
+      renderCommandCenter();
+    }
+
+    function raiseAlertTicket() {
+      const depot = depots.find(d => d.id === selectedDepotId);
+      const ev = evalDepot(depot);
+      if (!ev.hasError) return;
+
+      const id = 'ALT-2026-' + String(alerts.length + 81).padStart(3, '0');
+      const absV = Math.abs(ev.maxVar);
+      const sev = absV >= 5000 ? 'CRITICAL' : absV >= 150 ? 'HIGH' : 'MEDIUM';
+
+      alerts.unshift({
+        id,
+        depotId: depot.id,
+        depotName: depot.name,
+        code: depot.code,
+        checkpoints: ev.failedNames.join(', ') + ' vs SAP',
+        variance: ev.maxVar,
+        severity: sev,
+        status: 'OPEN',
+        rootCause: 'Auto-flagged by 5-Way Variance Engine',
+        sapRef: '—',
+        notes: 'Triggered from Depot Matrix for immediate verification.',
+        created: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST'
+      });
+
+      updateAlertBadge(alerts.filter(a => a.status === 'OPEN').length);
+      showToast(`Alert Ticket ${id} raised for ${depot.name}!`);
+      renderMatrixView();
+    }
+
+    // ===================== RENDER TAB 3: ALERTS HUB =====================
+    function renderAlertsHub() {
+      const filter = document.getElementById('alertStatusFilter').value;
+      const list = alerts.filter(a => filter === 'ALL' || a.status === filter);
+      const tbody = document.getElementById('alertsTableBody');
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:28px;color:var(--text-muted);">No discrepancy tickets in this view.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(a => {
+        const sevClass = a.severity === 'CRITICAL' ? 'pill-red' : a.severity === 'HIGH' ? 'pill-amber' : 'pill-blue';
+        const stPill = a.status === 'OPEN'
+          ? `<span class="pill pill-red">🚨 OPEN</span>`
+          : `<span class="pill pill-green">✔ RECTIFIED</span>`;
+
+        return `
+          <tr>
+            <td style="font-weight:700;">${a.id}<div style="font-size:11px;color:var(--text-muted);">${a.created}</div></td>
+            <td><strong>${a.depotName}</strong><div style="font-size:11.5px;color:var(--text-muted);">Code: ${a.code}</div></td>
+            <td>${a.checkpoints}</td>
+            <td style="font-weight:700;color:${a.status === 'OPEN' ? 'var(--red)' : 'var(--green)'};">${fmtDiff(a.variance)}</td>
+            <td><span class="pill ${sevClass}">${a.severity}</span></td>
+            <td>
+              <div style="font-weight:600;">${a.rootCause}</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">SAP/Ref: ${a.sapRef}</div>
+            </td>
+            <td>${stPill}</td>
+            <td>
+              ${a.status === 'OPEN'
+                ? `<button class="btn btn-primary btn-sm" onclick="openRectifyModal('${a.id}')">Rectify / Update</button>`
+                : `<button class="btn btn-outline btn-sm" onclick="inspectDepot('${a.depotId}')">View Depot</button>`
+              }
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openRectifyModal(ticketId) {
+      const t = alerts.find(a => a.id === ticketId);
+      if (!t) return;
+      document.getElementById('modalTicketId').value = t.id;
+      document.getElementById('modalTitle').textContent = `Rectify Ticket ${t.id} — ${t.depotName}`;
+      document.getElementById('modalSummary').innerHTML =
+        `<strong>Mismatch:</strong> ${t.checkpoints} &nbsp;|&nbsp; <strong>Variance:</strong> <span style="color:var(--red);font-weight:700;">${fmtDiff(t.variance)}</span>`;
+      document.getElementById('modalSapRef').value = '';
+      document.getElementById('modalNotes').value = '';
+      document.getElementById('rectifyModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('rectifyModal').classList.remove('open');
+    }
+
+    function confirmRectification() {
+      const id = document.getElementById('modalTicketId').value;
+      const t = alerts.find(a => a.id === id);
+      if (!t) return;
+
+      t.rootCause = document.getElementById('modalRootCause').value;
+      t.sapRef = document.getElementById('modalSapRef').value.trim() || 'SAP-VERIFIED-' + Math.floor(100000 + Math.random() * 900000);
+      t.notes = document.getElementById('modalNotes').value.trim() || 'Rectified and re-verified against physical & TAS logs.';
+      t.status = 'RECTIFIED';
+
+      if (document.getElementById('modalAutoSync').checked) {
+        const depot = depots.find(d => d.id === t.depotId);
+        if (depot) {
+          const base = depot.readings.sap;
+          depot.readings.gate = base;
+          depot.readings.tank = base;
+          depot.readings.bcu = base;
+          depot.readings.tas = base;
+        }
+      }
+
+      closeModal();
+      updateAlertBadge(alerts.filter(a => a.status === 'OPEN').length);
+      renderAlertsHub();
+      renderCommandCenter();
+      showToast(`Ticket ${t.id} rectified & depot re-verified!`);
+    }
+
+    function updateAlertBadge(count) {
+      const badge = document.getElementById('alertTabBadge');
+      badge.textContent = count;
+      badge.className = 'badge-count' + (count === 0 ? ' zero' : '');
+    }
+
+    // ===================== EXPORT CSV =====================
+    function exportCSV() {
+      const date = document.getElementById('eodDate').value;
+      const headers = ['Date','Depot','Plant Code','Region','Product','Gate Register (L)','Tank TFMS (L)','SAP Despatch (L)','Gantry BCU (L)','TAS Meter (L)','Max Variance (L)','EOD Status'];
+      const rows = depots.map(d => {
+        const ev = evalDepot(d);
+        return [
+          date, `"${d.name}"`, d.code, d.region, d.product,
+          d.readings.gate, d.readings.tank, d.readings.sap, d.readings.bcu, d.readings.tas,
+          ev.maxVar, ev.overall
+        ].join(',');
+      });
+      const csv = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `BPCL_PanIndia_5Way_EOD_${date}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('EOD Reconciliation CSV downloaded!');
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+    }
+
+    // Initialize
+    renderCommandCenter();
+  </script>
+</body>
+</html>
